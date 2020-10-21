@@ -164,6 +164,8 @@ A(2, Indx) = 10:15; % you can index an already existing variable to assign new c
 
 ```
 
+> you can also just write `A(end)` to get the last element in an array, or even `A(end-5:end)` to get the last 5.
+
 ### Boolean indexing
 Indexing is best done with booleans, by having an array of booleans the same size as that dimention, and it will select only the spots corresponding to "true". The best way to get such an array is through a boolean operation.
 
@@ -288,7 +290,7 @@ end
 
 ```
 
-I can then use that function like so:
+I can then call that function in a different script like so:
 ```
 F_Temp = farenheit2celcius(C_temp);
 ```
@@ -298,7 +300,7 @@ N.B. The variable names for the input and output don't need to be the same ones 
 
 Most of the ones you will use are included in MATLAB, some you will download from the internet, and a good chunk were written by previous students, and some you yourself will write. It's usually safe to assume that MATLAB has a built in function for most common operations.
 
-MATLAB functions include:
+Example MATLAB functions include:
 - `mean([1 2 3])` gets the average of all the elements in an array
 - `min([1 2 3])` gets the minimum of the array
 - `fullfile('Folder', 'Filename')` gives you as a string with the correct separators: "Folder/Filename"
@@ -308,6 +310,14 @@ Google is your friend, just search for "matlab get minimum" and first result wil
 
 You can have more than one output, which is called like so: `[Out1, Out2] = Function(Input)`. 
 
+What the output is determines how you can use the function. For common math ones, you can just nest them really easily:
+```
+A = [1:100];
+B = 5;
+
+J = exp(sum(A), B)/log(A(end)+B);
+
+```
 
 ## Special data types
 Special data types are created through functions. The main ones include:
@@ -319,6 +329,66 @@ Special data types are created through functions. The main ones include:
 
 You can convert data types with functions: `S = mat2str(5)`
 
-### 4) Plotting
+# 3) Plotting
+The most rewarding part of MATLAB programming is the end, when you get to plot things. The basic plots are provided by MATLAB, but often you can have nicer plots encapsuled in a function, where it decides things like font size, shapes, etc. 
 
-### 3) Toolboxes for EEG
+Plots are displayed in **figures** which are in turn divided into **subplots**, based on indexed grid.
+
+```
+figure
+subplot(2, 1, 1)
+plot(x, y)
+
+subplot(2, 1, 2)
+plot(x, log(y))
+
+```
+## Common plot types
+
+## Plotting variables
+Different types of plots require different inputs. They can either be specified inside the `plot()` call, or afterwards.
+
+```
+figure
+plot(x, y, 'Color'[1 0 0])
+title('X vs Y')
+set(gca, 'FontSize', 12) % sometimes, you have to be fancy
+
+```
+
+Important plotting variables include:
+- labels: e.g. title, axes labels, axes ticks, etc.
+- colors: both for lines, filled in shapes, etc
+- font properties: font size, font name, etc
+- axes limits & orientations
+- "alpha": the transparency of something
+
+Just see in the documentation how to use them.
+
+
+### Colors and colormaps
+Colors can be specified either with specific letters (`'r'` for red), or as a tripplet of numbers from 0 to 1, indicating % of red, green and blue (`[1 0 0]`), known as sRGB. 
+
+If you provide a 4 element array, the last value is interpreted as the "alpha", so transparency, with 0 being invisible, and 1 solid.
+
+
+#### colormaps
+Often times in scientific plotting, you want to represent values on a colorscale. To do this, you use a **colormap**, which is really just a pre-defined n x 3 matrix indicating what color to assign to which value (normalized across the range of data, or specified in `caxis([Min Max])`). The default colormap for MATLAB is currently "perula", which is bad, and for EEGLAB is "jet", which is worse. More information can be found [here](https://bids.github.io/colormap/).
+
+Different types of colormaps are better for representing different kinds of data.
+**Linear** colormaps are good for representing data that has a lower (or upper) limit, like 0. It essentially only represents magnitude.
+
+**Divergent** colormaps are good for representing values that can be both positive and negative, with color indicating sign, and darkness indicating amplitude. 
+
+**circular** colormaps are good for representing cyclical values, like angles. These are such that the "extremes" have the same color.
+
+**rainbow** colormaps just have a lot of different colors, and are really only good for picking out n colors for some discrete thing. 
+
+
+
+
+
+## 4) Toolboxes for EEG
+You can download toolboxes (lots and lots of scripts and functions packaged together) from the internet. The most commonly used ones for EEG data analysis are:
+- [EEGLAB](https://sccn.ucsd.edu/eeglab/download.php)
+- [fieldtrip](https://www.fieldtriptoolbox.org/download/)
