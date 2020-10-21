@@ -28,7 +28,7 @@ This series of instructions provides you with everything you need to do to get f
 ## Advanced Material
 Here are instructions for more advanced methods of data analysis.
 
-- Travelling waves (By Giorgia S.)
+- Travelling waves (By Georgia S.)
 - Slope slow wave analysis (By Valeria J.)
 
 
