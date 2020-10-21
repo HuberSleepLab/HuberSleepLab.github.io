@@ -1,5 +1,7 @@
 Welcome to our comprehensive guide to high-density EEG sleep analysis! 
 
+<p>&nbsp;</p>
+
 ## Quick Start
 This series of instructions provides you with everything you need to do to get from raw EEG data to a topoplot showing a statistically significant increase in slow wave activity following sleep deprivation. Data will have to be provided directly by Huber Sleep Lab members (regarding <a href="https://lsm.schlaflab.com" target="_blank">this experiment</a>). Otherwise, you can adapt the pipeline to your own data.
 
@@ -20,6 +22,8 @@ This series of instructions provides you with everything you need to do to get f
 5. Topographies (By Niklas S.)
 6. Statistics (By Niklas S.)
 
+
+<p>&nbsp;</p>
 
 ## Advanced Material
 Here are instructions for more advanced methods of data analysis.
