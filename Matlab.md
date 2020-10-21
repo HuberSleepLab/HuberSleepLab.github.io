@@ -1,4 +1,4 @@
-# Matlab
+# MATLAB
 > By Sophia Snipes (*Last updated: October 2020*)
 
 [MATLAB](https://mathworks.com/products/matlab.html) is the programming language used in this tutorial. You really should know it before getting to this point, but in case it helps, here are a few introductory concepts. The pipeline we use could theoretically be applied to any other programming language, but MATLAB is particularly appropriate because of the heavy use of matrices.
