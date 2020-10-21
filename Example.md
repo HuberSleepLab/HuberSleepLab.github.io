@@ -7,6 +7,8 @@ We just love the **2-process model** by *Alexander Borberly*:
 
 I'm not going to bother explaining it, so just look [here](https://en.wikipedia.org/wiki/Sleep).
 
+If you can't do something fancy in Markdown, you can just write in HTML: <a href="http://google.com/" target="_blank">Just Google It!</a>
+
 But! What if someone here already presents it? Well I can just link it like [so](https://hubersleeplab.github.io/README2.html).
 
 #### Subpoint to the intro
