@@ -88,7 +88,7 @@ C = [23 19 35 22 27 5 2]
 F = (9/5)*C + 32
 ```
 
-Like this you convert an **array** of temperatures from Celcius into Farenheit!
+Like this you convert an **array** of temperatures from Celsius into Farenheit!
 
 You can also make an array of numbers from n to m like so: `C = 1:5`
 Or, if you want to specify the interval, like so: `C = 1:0.25:5`
@@ -329,7 +329,7 @@ Functions are basically scripts in a bubble. The only variables it knows about a
 A script gets saved as a function when it starts with this line `function Output = FunctionName(Input)`. A function "script" needs to be named exactly the same as the function, so `FunctionName.m`. Functions can also be written into a script at the bottom.
 
 ```m
-function F = farenheit2celcius(C)
+function F = farenheit2celsius(C)
 F = (9/5)*C +32;
 end
 ```
@@ -337,7 +337,7 @@ end
 I can then call that function in a different script like so:
 
 ```m
-F_Temp = farenheit2celcius(C_temp);
+F_Temp = farenheit2celsius(C_temp);
 ```
 
 N.B. The variable names for the input and output don't need to be the same ones used in the function. 
