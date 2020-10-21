@@ -63,7 +63,7 @@ Simple math operations include:
 ## Variables
 Variables are placeholders (think of them like x and y in math equations) used in scripts. You "declare" the variable once at the beginning, and then can keep using that same number over and over again without having to re-write it every time. Often times, you actually want to modify it as you go along:
 
-```
+```m
 A = 1;
 A = A+1;
 A = A*100;
@@ -80,33 +80,35 @@ Variable names cannot include any characters except letters and numbers, and the
 
 ## Batch math operations
 Also unlike calculators, you can apply a formula to a whole list of numbers like so:
+
 ```m
 C = [23 19 35 22 27 5 2]
 
 F = (9/5)*C + 32
 ```
-And you convert an **array** of temperatures from Celcius into Farenheit!
+
+Like this you convert an **array** of temperatures from Celcius into Farenheit!
 
 You can also make an array of numbers from n to m like so: `C = 1:5`
-Or, if you want to specify the interval, like so: `C = 1:.25:5`
+Or, if you want to specify the interval, like so: `C = 1:0.25:5`
 Or if you want to go backwards: `C = 5:-1:1` 
 
 
 <p>&nbsp;</p>
 
 ## Matrices
-If you just have one row of numbers, its called an "array". If you have multiple rows and multiple columns, its a matrix. To create a matrix, just do this:
+If you just have one row of numbers, its called an array. If you have multiple rows and multiple columns, its a **matrix**. To create a matrix, just do one of the following:
+
 ```m
 M = [1 2 3; 4 5 6; 7 8 9]
 N = [1,2,3; 4,5,6; 7,8,9];
 O = [1 2 3
-4 5 6
-7 8 9];
+     4 5 6
+     7 8 9];
 
 P = [M; N; O];
 
 Q = [1, 2 3; 4:6; P]; % you can even mix variables and numbers
-
 ```
 The above matrices are 2 dimentional, but it is also possible to be 3 or n dimentional. 
 
@@ -116,7 +118,7 @@ The above matrices are 2 dimentional, but it is also possible to be 3 or n dimen
 ## Matrix operations
 Just like with variables with 1 element, you can do math operations on matrices. You have to be a bit more careful here because the dimentions (number of rows and number of columns) must agree, depending on the operation. Applying an operation on the wrong dimention is a common source of error messages.
 
-```
+```m
 A = [1 1 1; 2 2 2];
 B = [0, 5];
 C = 3;
@@ -125,7 +127,6 @@ A = A'; % flips rows and columns
 A = A.*B; % multiplies every row (now 2 elements) with B
 
 A = A*B'; % fancy matrix multiplication called a "dot product"
-
 ```
 
 
@@ -137,7 +138,7 @@ Other than numbers, you can have a variable (or array, or matrix) that is just `
 
 Just like with addition, you can combine logical operators with `&` (and) or `|` (or).
 
-```
+```m
 T = true;
 F = false;
 
@@ -157,7 +158,7 @@ These can all be combined: `(A<B) | (B==0 & A>5)`;
 ## Strings
 All the above (a.k.a. math) uses just numbers. But because MATLAB is a real programming language, you can also do things with letters, called **strings**, which is important when you want to type a message when something is done, or looking for filenames, etc. You can also merge strings like you would merge arrays.
 
-```
+```m
 Operator = 'Sophia';
 Message = ', I finished!';
 
@@ -172,9 +173,8 @@ Strings like the ones above are technically "string arrays", because each charac
 ## Cells
 You cannot have a matrix or array with both numbers and strings. To have one variable holding both, you need a **cell array**, indicated with `{}`.
 
-```
+```m
 Cell = {'Hanna', 'Sophia', 'Mark'; 2, 4, 5};
-
 ```
 
 
@@ -183,7 +183,7 @@ Cell = {'Hanna', 'Sophia', 'Mark'; 2, 4, 5};
 ## Indexing
 Sometimes, you don't want everything contained in a variable. So you "index" a subsection by selecting which numbered element in the array that you want. Indexing can either be done with just one number `A(4)` (if it's one array it takes the 4th element, if its a matrix, it scans each column until it reaches the 4th element) or with a list:
 
-```
+```m
 A = [1:100; 51:150];
 
 B = A(2, 40:45); % sele
@@ -193,7 +193,6 @@ Indx = 1:5;
 B2 = A(1, Indx);
 
 A(2, Indx) = 10:15; % you can index an already existing variable to assign new content to those locations
-
 ```
 
 > you can also just write `A(end)` to get the last element in an array, or even `A(end-5:end)` to get the last 5.
@@ -204,7 +203,7 @@ A(2, Indx) = 10:15; % you can index an already existing variable to assign new c
 ### Boolean indexing
 Indexing is best done with booleans, by having an array of booleans the same size as that dimention, and it will select only the spots corresponding to "true". The best way to get such an array is through a boolean operation.
 
-```
+```m
 A = [1, 2, -5, 3, 6; -2, -3, 2];
 Indx = A < 0;
 A(Indx) = 0; % assign 0 to all negative numbers in A
@@ -218,7 +217,8 @@ Most programming languages have at least some of these features. They are instru
 
 ### For loops
 Loops through all the lines between the "for" line and "end", each time assigning a different number to the variable "Indx".
-```
+
+```m
 A = 5;
 for Indx = 1:5
     A = A*Indx;
@@ -228,7 +228,7 @@ end
 ### If statements
 Checks if something is true or false, and accordingly will run different lines of code.
 
-```
+```m
 if A==B
     S = 'they're equal!';
 elseif A < B
@@ -241,18 +241,17 @@ end
 ### While loops
 So long as something is true, it will run the lines of code over and over again.
 
-```
+```m
 A = 1;
 while A < 100
     A = A + 1;
 end
-
 ```
 
 ### How to leave loops
 If you want to skip a specific loop, you use `continue`; if you want to stop looping, you use `break`
 
-```
+```m
 A = 1;
 B = 0;
 
@@ -270,7 +269,7 @@ end
 ### Switch
 Like if/else, but relies on matching a subset of specific conditions.
 
-```
+```m
 Datatype = 'table';
 switch Datatype
     case 'table'
@@ -282,13 +281,12 @@ switch Datatype
     otherwise
         V = {};
 end
-
 ```
 
 ### Try-Catch
 Tries to run one chunk of code, and if for whatever reason it doesn't work, it runs another chunk. This is best avoided in real code, but an important tool in debugging.
 
-```
+```m
 A = [1 2 3];
 B = [1 2];
 
@@ -297,8 +295,8 @@ try
 catch
     A = [A, B];
 end
-
 ```
+
 > Tip: this works well in conjuncture with breakpoints (click on the - next to a line of code in a script, it will turn into a red circle). If you add a breakpoint inside the catch statement, the program will stop running only if something went wrong, and you have a chance to debug inside a function.
 
 
@@ -326,15 +324,15 @@ Functions are basically scripts in a bubble. The only variables it knows about a
 
 A script gets saved as a function when it starts with this line `function Output = FunctionName(Input)`. A function "script" needs to be named exactly the same as the function, so `FunctionName.m`. Functions can also be written into a script at the bottom.
 
-```
+```m
 function F = farenheit2celcius(C)
 F = (9/5)*C +32;
 end
-
 ```
 
 I can then call that function in a different script like so:
-```
+
+```m
 F_Temp = farenheit2celcius(C_temp);
 ```
 
@@ -354,12 +352,12 @@ Google is your friend, just search for "matlab get minimum" and first result wil
 You can have more than one output, which is called like so: `[Out1, Out2] = Function(Input)`. 
 
 What the output is determines how you can use the function. For common math ones, you can just nest them really easily:
-```
+
+```m
 A = [1:100];
 B = 5;
 
 J = exp(sum(A), B)/log(A(end)+B);
-
 ```
 
 
@@ -385,7 +383,7 @@ The most rewarding part of MATLAB programming is the end, when you get to plot t
 
 Plots are displayed in **figures** which are in turn divided into **subplots**, based on indexed grid.
 
-```
+```m
 figure
 subplot(2, 1, 1)
 plot(x, y)
@@ -395,6 +393,7 @@ plot(x, log(y))
 hold on
 plot(x, log2(y))
 ```
+
 `hold on` is used to plot multiple times on the same figure/subplot. Otherwise every time you called a new plot function, it would erase the previous one.
 
 
@@ -408,7 +407,7 @@ Good for plotting time series.
 
 ![](images/MATLAB/lineplot.jpg)
 
-```
+```m
 X = 1:14;
 Y1 = [6 5 3 4 6 7 7 12 11 9 7  10 12 11];
 Y2 = [10 8 11 9 7 4 3 5 8 6 4 1 2 3];
@@ -426,6 +425,7 @@ set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
 title('Line Plot Example')
 legend({'Line 1', 'Line 2'}, 'Location', 'southwest')
 ```
+
 > This example codes are more elaborate than needed. It's enough to just do `plot(X, Y1)`, but the above is a realistic piece of code for a plot you could actually publish with.
 
 
@@ -436,7 +436,7 @@ Good for plotting data in which their order does not matter.
 ![](images/MATLAB/scatter.jpg)
 
 
-```
+```m
 figure
 hold on
 scatter(X, Y1, 50, Color1, 'filled')
@@ -454,7 +454,7 @@ Bar graphs, stacked or clustered however you want.
 ![](images/MATLAB/barplot.jpg)
 
 
-```
+```m
 Colors = [Color1; Color2];
 figure
 h = bar([Y1(1:5); Y2(5:9)]', 'stacked');
@@ -477,7 +477,7 @@ This creates a grid, and fills in each cell with a color, with the color intensi
 ![](images/MATLAB/image.jpg)
 
 
-```
+```m
 figure
 imagesc(repmat([X;Y1; Y2], 10, 2))
 axis square
@@ -493,7 +493,7 @@ Plots the distrubtion (especially median and interquartile range) of a vector of
 
 ![](images/MATLAB/boxplot.jpg)
 
-```
+```m
 figure
 h= boxplot([Y1; Y2]', {'Y1', 'Y2'}, 'Colors', Colors);
 set(h,{'linew'},{3})
@@ -507,7 +507,7 @@ This calculates the distribution of a given variable's values. For this example 
 ![](images/MATLAB/histogram.jpg)
 
 
-```
+```m
 figure
 histogram([Y1, Y2])
 ```
@@ -518,12 +518,11 @@ histogram([Y1, Y2])
 ## Plotting variables
 Different types of plots require different inputs. They can either be specified inside the `plot()` call, or afterwards.
 
-```
+```m
 figure
 plot(x, y, 'Color'[1 0 0])
 title('X vs Y')
 set(gca, 'FontSize', 12) % sometimes, you have to be fancy
-
 ```
 
 Important plotting variables include:
@@ -567,7 +566,7 @@ Different types of colormaps are better for representing different kinds of data
 
 
 To try out the code:
-```
+```m
 figure
 surf(peaks(100),'EdgeColor', 'none')
 colorbar

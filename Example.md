@@ -48,29 +48,4 @@ F = plot(B,A);
 close all
 ```
 
-```Matlab
-
-A = 3;
-B = [1 2 3];
-F = plot(B,A);
-
-close all
-```
-
-```MATLAB
-
-A = 3;
-B = [1 2 3];
-F = plot(B,A);
-
-close all
-```
-
-```matlab
-
-A = 3;
-B = [1 2 3];
-F = plot(B,A);
-
-close all
-```
+The m makes it matlab colored
