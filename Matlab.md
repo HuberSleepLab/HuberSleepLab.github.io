@@ -541,13 +541,13 @@ histogram([Y1, Y2])
 
 <p>&nbsp;</p>
 
-### Colors and colormaps
+#### Colors
 Colors can be specified either with specific letters (`'r'` for red), or as a tripplet of numbers from 0 to 1, indicating % of red, green and blue (`[1 0 0]`), known as sRGB. 
 
 If you provide a 4 element array, the last value is interpreted as the "alpha", so transparency, with 0 being invisible, and 1 solid.
 
 
-#### colormaps
+#### Colormaps
 Often times in scientific plotting, you want to represent values on a colorscale. To do this, you use a **colormap**, which is really just a pre-defined n x 3 matrix indicating what color to assign to which value (normalized across the range of data, or specified in `caxis([Min Max])`). The default colormap for MATLAB is currently "perula", which is bad, and for EEGLAB is "jet", which is worse. More information can be found [here](https://bids.github.io/colormap/).
 
 Different types of colormaps are better for representing different kinds of data.
