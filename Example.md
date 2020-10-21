@@ -20,7 +20,7 @@ In case you didn't notice, there's a cute little menu on the left, but it will o
 2. List
 
 #### Example Code
-```
+```m
 Var1 = 3;
 Var2 = 5;
 
@@ -38,3 +38,39 @@ Row Names | Data
 ----------|----- 
 First row | Lots of data
 Second row | More data
+
+```m
+
+A = 3;
+B = [1 2 3];
+F = plot(B,A);
+
+close all
+```
+
+```Matlab
+
+A = 3;
+B = [1 2 3];
+F = plot(B,A);
+
+close all
+```
+
+```MATLAB
+
+A = 3;
+B = [1 2 3];
+F = plot(B,A);
+
+close all
+```
+
+```matlab
+
+A = 3;
+B = [1 2 3];
+F = plot(B,A);
+
+close all
+```

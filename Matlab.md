@@ -341,9 +341,28 @@ plot(x, y)
 
 subplot(2, 1, 2)
 plot(x, log(y))
-
 ```
 ## Common plot types
+
+#### plot()
+A simple line plot. Values will be plotted in the order in which they appear in the input arrays provided.
+Good for plotting time series. 
+
+#### scatter()
+A scatter plot, in which x and y values of each point are provided as seperate arrays, in the order of magnitude for each axis. There is no connecting line between the points.
+Good for plotting data in which their order does not matter.
+
+#### bar()
+Bar graphs, stacked or clustered however you want. 
+
+
+#### imagesc()
+This creates a grid, and fills in each cell with a color, with the color intensity indicating the value from an input matrix. Best accompanied by a colorbar.
+
+#### boxplot()
+
+#### histogram()
+
 
 ## Plotting variables
 Different types of plots require different inputs. They can either be specified inside the `plot()` call, or afterwards.
@@ -383,7 +402,6 @@ Different types of colormaps are better for representing different kinds of data
 **circular** colormaps are good for representing cyclical values, like angles. These are such that the "extremes" have the same color.
 
 **rainbow** colormaps just have a lot of different colors, and are really only good for picking out n colors for some discrete thing. 
-
 
 
 
