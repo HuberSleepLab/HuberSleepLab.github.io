@@ -6,23 +6,34 @@
 
 
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 
 # 1) Download MATLAB
 Depending on your institution, there's different ways to download it. So ask someone or google it.
-
 Once you have it, this is the interface:
 ![](images/MATLAB/interface.PNG)
+
+
+
+<p>&nbsp;</p>
 
 ## Key Concepts
 - **Console**: This is that box in the bottom with `>>`, where you can "talk" directly to MATLAB, and it answers. This is good as a quick calculator, or a fast way to run functions, and in general is used a lot when writing new scripts.
 - **Scripts**: Scripts are "example.m" files that you write in the editor (see picture), and run by pressing that green triangle in the "Editor" tab of the menu bar on top. You can also run them by typing the name of the file in the console.
-- Current location: matlab will only consider running scripts in the folder in which you are currently located, or in specifically designated paths. You can see which files these are in the "Current Folder" panel on the left.
+- **Current location**: matlab will only consider running scripts in the folder in which you are currently located, or in specifically designated paths. You can see which files these are in the "Current Folder" panel on the left.
 - **Workspace**: Here (rightmost panel) you can see all the variables you've created and MATLAB is currently holding in memory.
 
 
 
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
 # 2) Syntax
 Here concepts are progressively built on, but if you see in the example code the use of a symbol you're not familiar with, the last section of 2) is a summary of all the special symbols and their meaning.
+
+
+<p>&nbsp;</p>
 
 ## Basic math operations
 You can use MATLAB as a caluclator by just writing `3+5` in the console. It will then spit out the result. Unlike a calculator though, you can have variables:
@@ -43,13 +54,16 @@ Simple math operations include:
 - `*` multiplication
 - `^` raise to the power (e.g. `10^2`)
 - `/` divide
-- `()` only round parentheses to indicate which math operations to do first
+- `(a+b)` only round parentheses to indicate which math operations to do first
 
+
+
+<p>&nbsp;</p>
 
 ## Variables
-Variables are placeholders (think of them like x and y in math equations) used in scripts, so that you "declare" the variable once at the beginning, and then can keep using that same number over and over again without having to re-write it every time. 
-Often times, you actually want to modify it as you go along:
-```m
+Variables are placeholders (think of them like x and y in math equations) used in scripts. You "declare" the variable once at the beginning, and then can keep using that same number over and over again without having to re-write it every time. Often times, you actually want to modify it as you go along:
+
+```
 A = 1;
 A = A+1;
 A = A*100;
@@ -58,8 +72,11 @@ A = [A, A];
 
 Variable names cannot include any characters except letters and numbers, and the first character must always be a letter. Variables are CaSeseNsitive, so be careful. 
 
-> N.B. matlab has things that have special names; if you name a variable with that name, you overwrite it. Classic example, `i` indicates the imaginary number (square root of -1), so don't name any variable i. Same for `pi`.
+> N.B. MATLAB has things that have special names; if you name a variable with that name, you overwrite it. Classic example, `i` indicates the imaginary number (square root of -1), so don't name any variable i. Same for `pi`
 
+
+
+<p>&nbsp;</p>
 
 ## Batch math operations
 Also unlike calculators, you can apply a formula to a whole list of numbers like so:
@@ -74,6 +91,8 @@ You can also make an array of numbers from n to m like so: `C = 1:5`
 Or, if you want to specify the interval, like so: `C = 1:.25:5`
 Or if you want to go backwards: `C = 5:-1:1` 
 
+
+<p>&nbsp;</p>
 
 ## Matrices
 If you just have one row of numbers, its called an "array". If you have multiple rows and multiple columns, its a matrix. To create a matrix, just do this:
@@ -92,6 +111,8 @@ Q = [1, 2 3; 4:6; P]; % you can even mix variables and numbers
 The above matrices are 2 dimentional, but it is also possible to be 3 or n dimentional. 
 
 
+<p>&nbsp;</p>
+
 ## Matrix operations
 Just like with variables with 1 element, you can do math operations on matrices. You have to be a bit more careful here because the dimentions (number of rows and number of columns) must agree, depending on the operation. Applying an operation on the wrong dimention is a common source of error messages.
 
@@ -107,6 +128,8 @@ A = A*B'; % fancy matrix multiplication called a "dot product"
 
 ```
 
+
+<p>&nbsp;</p>
 
 ## Logical operators
 Other than numbers, you can have a variable (or array, or matrix) that is just `true` or `false`. These are also represented as 1 and 0, respectively, and are called **booleans**.
@@ -128,6 +151,9 @@ You can query if something is equal `A==B`, not equal `A~=B`, greater `A>B`, les
 
 These can all be combined: `(A<B) | (B==0 & A>5)`;
 
+
+<p>&nbsp;</p>
+
 ## Strings
 All the above (a.k.a. math) uses just numbers. But because MATLAB is a real programming language, you can also do things with letters, called **strings**, which is important when you want to type a message when something is done, or looking for filenames, etc. You can also merge strings like you would merge arrays.
 
@@ -141,6 +167,8 @@ Display = [Operator, Message]
 Strings like the ones above are technically "string arrays", because each character is like a different number in a matrix. You can unite all the things inside a string into 1 element by using `"double quotes"`.
 
 
+<p>&nbsp;</p>
+
 ## Cells
 You cannot have a matrix or array with both numbers and strings. To have one variable holding both, you need a **cell array**, indicated with `{}`.
 
@@ -149,6 +177,8 @@ Cell = {'Hanna', 'Sophia', 'Mark'; 2, 4, 5};
 
 ```
 
+
+<p>&nbsp;</p>
 
 ## Indexing
 Sometimes, you don't want everything contained in a variable. So you "index" a subsection by selecting which numbered element in the array that you want. Indexing can either be done with just one number `A(4)` (if it's one array it takes the 4th element, if its a matrix, it scans each column until it reaches the 4th element) or with a list:
@@ -168,6 +198,9 @@ A(2, Indx) = 10:15; % you can index an already existing variable to assign new c
 
 > you can also just write `A(end)` to get the last element in an array, or even `A(end-5:end)` to get the last 5.
 
+
+<p>&nbsp;</p>
+
 ### Boolean indexing
 Indexing is best done with booleans, by having an array of booleans the same size as that dimention, and it will select only the spots corresponding to "true". The best way to get such an array is through a boolean operation.
 
@@ -176,6 +209,9 @@ A = [1, 2, -5, 3, 6; -2, -3, 2];
 Indx = A < 0;
 A(Indx) = 0; % assign 0 to all negative numbers in A
 ```
+
+
+<p>&nbsp;</p>
 
 ## For, If, While, Switch and Try
 Most programming languages have at least some of these features. They are instructions for the program on what to do in specified circumstances.
@@ -267,6 +303,7 @@ end
 
 
 
+<p>&nbsp;</p>
 
 ## Special symbols
 These are symbols already used above but not specifically addressed. 
@@ -279,6 +316,10 @@ These are symbols already used above but not specifically addressed.
 - `[]` square brackets are used to make lists or matrices. They can also unite arrays and matrices, but it's important that the number of elements match (e.g. you can't add a 3 row element to a 4 x 5 matrix)
 - `%` this and everything after indicates a comment, it is not treated as code. Commenting code is super important so you know what it does
 
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
 
 # 3) Functions
 Functions are basically scripts in a bubble. The only variables it knows about are the ones you pass it between parentheses, and the only variable you get in your main workspace is the ones specified in the output `Output = FunctionName(Input)`. 
@@ -321,6 +362,9 @@ J = exp(sum(A), B)/log(A(end)+B);
 
 ```
 
+
+<p>&nbsp;</p>
+
 ## Special data types
 Special data types are created through functions. The main ones include:
 - `T = table()` creates an empty table
@@ -330,6 +374,11 @@ Special data types are created through functions. The main ones include:
 > Common source of errors in code is indexing variables that have a specific data type in the wrong way. This will take a lot of trial and error before you get the hang of it.
 
 You can convert data types with functions: `S = mat2str(5)`
+
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
 
 # 3) Plotting
 The most rewarding part of MATLAB programming is the end, when you get to plot things. The basic plots are provided by MATLAB, but often you can have nicer plots encapsuled in a function, where it decides things like font size, shapes, etc. 
@@ -347,6 +396,9 @@ hold on
 plot(x, log2(y))
 ```
 `hold on` is used to plot multiple times on the same figure/subplot. Otherwise every time you called a new plot function, it would erase the previous one.
+
+
+<p>&nbsp;</p>
 
 ## Common plot types
 
@@ -461,6 +513,8 @@ histogram([Y1, Y2])
 ```
 
 
+<p>&nbsp;</p>
+
 ## Plotting variables
 Different types of plots require different inputs. They can either be specified inside the `plot()` call, or afterwards.
 
@@ -481,6 +535,8 @@ Important plotting variables include:
 
 Just see in the documentation how to use them.
 
+
+<p>&nbsp;</p>
 
 ### Colors and colormaps
 Colors can be specified either with specific letters (`'r'` for red), or as a tripplet of numbers from 0 to 1, indicating % of red, green and blue (`[1 0 0]`), known as sRGB. 
@@ -523,7 +579,11 @@ However, you will need to download colormaps from somewhere.
 
 
 
-## 4) Toolboxes for EEG
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+# 4) Toolboxes for EEG
 You can download toolboxes (lots and lots of scripts and functions packaged together) from the internet. The most commonly used ones for EEG data analysis are:
 - [EEGLAB](https://sccn.ucsd.edu/eeglab/download.php)
 - [fieldtrip](https://www.fieldtriptoolbox.org/download/)
