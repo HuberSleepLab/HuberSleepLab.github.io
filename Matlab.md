@@ -372,10 +372,11 @@ Special data types are created through functions. The main ones include:
 - `C = cell()` creates an empty cell array
 - `S = struct()` creates a structure. These are special, and the MATLAB [documentation](https://ch.mathworks.com/help/matlab/structures.html) explains them better than I can.
 - `D = datenum()` weird number that actually represents a time
-> Common source of errors in code is indexing variables that have a specific data type in the wrong way. This will take a lot of trial and error before you get the hang of it.
 
 You can convert data types with functions: `S = mat2str(5)`
 
+
+> Common source of errors in code is indexing variables that have a specific data type in the wrong way. This will take a lot of trial and error before you get the hang of it.
 
 <p>&nbsp;</p>
 
@@ -404,7 +405,7 @@ plot(x, log2(y))
 
 ### Common plot types
 
-##### plot()
+#### plot()
 A simple line plot. It's usually best if the values on the x axis are in order.
 Good for plotting time series. 
 
@@ -432,7 +433,7 @@ legend({'Line 1', 'Line 2'}, 'Location', 'southwest')
 > This example codes are more elaborate than needed. It's enough to just do `plot(X, Y1)`, but the above is a realistic piece of code for a plot you could actually publish with.
 
 
-##### scatter()
+#### scatter()
 A scatter plot, in which x and y values of each point are provided as seperate arrays, in the order of magnitude for each axis. There is no connecting line between the points.
 Good for plotting data in which their order does not matter.
 
@@ -451,7 +452,7 @@ title('Scatter Plot Example')
 set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
 ```
 
-##### bar()
+#### bar()
 Bar graphs, stacked or clustered however you want. 
 
 ![](images/MATLAB/barplot.jpg)
@@ -474,7 +475,7 @@ box off
 ```
 
 
-##### imagesc()
+#### imagesc()
 This creates a grid, and fills in each cell with a color, with the color intensity indicating the value from an input matrix. Best accompanied by a colorbar.
 
 ![](images/MATLAB/image.jpg)
@@ -491,7 +492,7 @@ title('Image example')
 set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
 ```
 
-##### boxplot()
+#### boxplot()
 Plots the distrubtion (especially median and interquartile range) of a vector of data (or seperately for every column of a matrix). Good for overview of multiple distributions.
 
 ![](images/MATLAB/boxplot.jpg)
@@ -504,7 +505,7 @@ set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
 title('Boxplot example')
 ```
 
-##### histogram()
+#### histogram()
 This calculates the distribution of a given variable's values. For this example code, I kept things very simple, because, at least for me, histograms are usually just for data exploration, not an end result in and of itself.
 
 ![](images/MATLAB/histogram.jpg)
@@ -535,18 +536,18 @@ Important plotting variables include:
 - axes limits & orientations
 - "alpha": the transparency of something
 
-Just see in the documentation how to use them.
+Just see the documentation on how to use them.
 
 
 <p>&nbsp;</p>
 
-#### Colors and colormaps
+### Colors and colormaps
 Colors can be specified either with specific letters (`'r'` for red), or as a tripplet of numbers from 0 to 1, indicating % of red, green and blue (`[1 0 0]`), known as sRGB. 
 
 If you provide a 4 element array, the last value is interpreted as the "alpha", so transparency, with 0 being invisible, and 1 solid.
 
 
-##### colormaps
+#### colormaps
 Often times in scientific plotting, you want to represent values on a colorscale. To do this, you use a **colormap**, which is really just a pre-defined n x 3 matrix indicating what color to assign to which value (normalized across the range of data, or specified in `caxis([Min Max])`). The default colormap for MATLAB is currently "perula", which is bad, and for EEGLAB is "jet", which is worse. More information can be found [here](https://bids.github.io/colormap/).
 
 Different types of colormaps are better for representing different kinds of data.
@@ -559,11 +560,11 @@ Different types of colormaps are better for representing different kinds of data
 ![](images/MATLAB/divergent.jpg)
 
 
-**circular** colormaps are good for representing cyclical values, like angles. These are such that the "extremes" have the same color.
+**Circular** colormaps are good for representing cyclical values, like angles. These are such that the "extremes" have the same color.
 ![](images/MATLAB/circular.jpg)
 
 
-**rainbow** colormaps just have a lot of different colors, and are really only good for picking out n colors for some discrete thing. 
+**Rainbow** colormaps just have a lot of different colors, and are really only good for picking out n colors for some discrete thing. 
 ![](images/MATLAB/rainbow.jpg)
 
 
@@ -590,5 +591,7 @@ You can download toolboxes (lots and lots of scripts and functions packaged toge
 - [EEGLAB](https://sccn.ucsd.edu/eeglab/download.php)
 - [fieldtrip](https://www.fieldtriptoolbox.org/download/)
 
+
+____________________________________________________________________
 
 **[Return to HomePage](https://https://hubersleeplab.github.io/)**
