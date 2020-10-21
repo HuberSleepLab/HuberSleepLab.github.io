@@ -6,6 +6,7 @@
 
 
 <p>&nbsp;</p>
+------
 <p>&nbsp;</p>
 
 ## 1) Download MATLAB
@@ -319,7 +320,7 @@ These are symbols already used above but not specifically addressed.
 
 
 <p>&nbsp;</p>
-
+------
 <p>&nbsp;</p>
 
 ## 3) Functions
@@ -379,10 +380,10 @@ You can convert data types with functions: `S = mat2str(5)`
 > Common source of errors in code is indexing variables that have a specific data type in the wrong way. This will take a lot of trial and error before you get the hang of it.
 
 <p>&nbsp;</p>
-
+------
 <p>&nbsp;</p>
 
-## 3) Plotting
+## 4) Plotting
 The most rewarding part of MATLAB programming is the end, when you get to plot things. The basic plots are provided by MATLAB, but often you can have nicer plots encapsuled in a function, where it decides things like font size, shapes, etc. 
 
 Plots are displayed in **figures** which are in turn divided into **subplots**, based on indexed grid.
@@ -583,10 +584,10 @@ However, you will need to download colormaps from somewhere.
 
 
 <p>&nbsp;</p>
-
+------
 <p>&nbsp;</p>
 
-## 4) Toolboxes for EEG
+## 5) Toolboxes for EEG
 You can download toolboxes (lots and lots of scripts and functions packaged together) from the internet. The most commonly used ones for EEG data analysis are:
 - [EEGLAB](https://sccn.ucsd.edu/eeglab/download.php)
 - [fieldtrip](https://www.fieldtriptoolbox.org/download/)
