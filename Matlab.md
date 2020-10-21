@@ -586,3 +586,6 @@ However, you will need to download colormaps from somewhere.
 You can download toolboxes (lots and lots of scripts and functions packaged together) from the internet. The most commonly used ones for EEG data analysis are:
 - [EEGLAB](https://sccn.ucsd.edu/eeglab/download.php)
 - [fieldtrip](https://www.fieldtriptoolbox.org/download/)
+
+
+**[Return to HomePage](https://https://hubersleeplab.github.io/)**
