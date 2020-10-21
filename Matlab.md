@@ -372,22 +372,91 @@ set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
 title('Line Plot Example')
 legend({'Line 1', 'Line 2'}, 'Location', 'southwest')
 ```
+> This example codes are more elaborate than needed. It's enough to just do `plot(X, Y1)`, but the above is a realistic piece of code for a plot you could actually publish with.
+
 
 #### scatter()
 A scatter plot, in which x and y values of each point are provided as seperate arrays, in the order of magnitude for each axis. There is no connecting line between the points.
 Good for plotting data in which their order does not matter.
 
+![](images/MATLAB/scatter.jpg)
+
+
+```
+figure
+hold on
+scatter(X, Y1, 50, Color1, 'filled')
+scatter(X, Y2, 50,  Color2, 'filled')
+ylim([0 13])
+xlabel('X Data')
+ylabel('Y Data')
+title('Scatter Plot Example')
+set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
+```
+
 #### bar()
 Bar graphs, stacked or clustered however you want. 
+
+![](images/MATLAB/barplot.jpg)
+
+
+```
+Colors = [Color1; Color2];
+figure
+h = bar([Y1(1:5); Y2(5:9)]', 'stacked');
+for Indx = 1:numel(h)
+    h(Indx).FaceColor = Colors(Indx, :);
+    h(Indx).EdgeColor = Colors(Indx, :);
+end
+title('Stacked Bar Plot Example')
+xticks(1:5)
+xticklabels({'B1', 'B2', 'B3', 'B4', 'B5'})
+set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
+ylabel('Values')
+box off
+```
 
 
 #### imagesc()
 This creates a grid, and fills in each cell with a color, with the color intensity indicating the value from an input matrix. Best accompanied by a colorbar.
 
+![](images/MATLAB/image.jpg)
+
+
+```
+figure
+imagesc(repmat([X;Y1; Y2], 10, 2))
+axis square
+axis off
+colorbar
+colormap(magma)
+title('Image example')
+set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
+```
+
 #### boxplot()
 Plots the distrubtion (especially median and interquartile range) of a vector of data (or seperately for every column of a matrix). Good for overview of multiple distributions.
 
+![](images/MATLAB/boxplot.jpg)
+
+```
+figure
+h= boxplot([Y1; Y2]', {'Y1', 'Y2'}, 'Colors', Colors);
+set(h,{'linew'},{3})
+set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
+title('Boxplot example')
+```
+
 #### histogram()
+This calculates the distribution of a given variable's values. For this example code, I kept things very simple, because, at least for me, histograms are usually just for data exploration, not an end result in and of itself.
+
+![](images/MATLAB/histogram.jpg)
+
+
+```
+figure
+histogram([Y1, Y2])
+```
 
 
 ## Plotting variables
@@ -423,12 +492,32 @@ Often times in scientific plotting, you want to represent values on a colorscale
 Different types of colormaps are better for representing different kinds of data.
 **Linear** colormaps are good for representing data that has a lower (or upper) limit, like 0. It essentially only represents magnitude.
 
+![](images/MATLAB/linear.jpg)
+
+
 **Divergent** colormaps are good for representing values that can be both positive and negative, with color indicating sign, and darkness indicating amplitude. 
+![](images/MATLAB/divergent.jpg)
+
 
 **circular** colormaps are good for representing cyclical values, like angles. These are such that the "extremes" have the same color.
+![](images/MATLAB/circular.jpg)
+
 
 **rainbow** colormaps just have a lot of different colors, and are really only good for picking out n colors for some discrete thing. 
+![](images/MATLAB/rainbow.jpg)
 
+
+
+To try out the code:
+```
+figure
+surf(peaks(100),'EdgeColor', 'none')
+colorbar
+colormap('rdbu')
+caxis([-8 8])
+axis off
+```
+However, you will need to download colormaps from somewhere.
 
 
 
