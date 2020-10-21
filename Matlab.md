@@ -25,7 +25,7 @@ Here concepts are progressively built on, but if you see in the example code the
 ## Basic math operations
 You can use MATLAB as a caluclator by just writing `3+5` in the console. It will then spit out the result. Unlike a calculator though, you can have variables:
 
-```
+```m
 x = 3
 a = 2
 b = 5
@@ -47,7 +47,7 @@ Simple math operations include:
 ## Variables
 Variables are placeholders (think of them like x and y in math equations) used in scripts, so that you "declare" the variable once at the beginning, and then can keep using that same number over and over again without having to re-write it every time. 
 Often times, you actually want to modify it as you go along:
-```
+```m
 A = 1;
 A = A+1;
 A = A*100;
@@ -61,7 +61,7 @@ Variable names cannot include any characters except letters and numbers, and the
 
 ## Batch math operations
 Also unlike calculators, you can apply a formula to a whole list of numbers like so:
-```
+```m
 C = [23 19 35 22 27 5 2]
 
 F = (9/5)*C + 32
@@ -75,7 +75,7 @@ Or if you want to go backwards: `C = 5:-1:1`
 
 ## Matrices
 If you just have one row of numbers, its called an "array". If you have multiple rows and multiple columns, its a matrix. To create a matrix, just do this:
-```
+```m
 M = [1 2 3; 4 5 6; 7 8 9]
 N = [1,2,3; 4,5,6; 7,8,9];
 O = [1 2 3
@@ -341,12 +341,37 @@ plot(x, y)
 
 subplot(2, 1, 2)
 plot(x, log(y))
+hold on
+plot(x, log2(y))
 ```
+`hold on` is used to plot multiple times on the same figure/subplot. Otherwise every time you called a new plot function, it would erase the previous one.
+
 ## Common plot types
 
 #### plot()
-A simple line plot. Values will be plotted in the order in which they appear in the input arrays provided.
+A simple line plot. It's usually best if the values on the x axis are in order.
 Good for plotting time series. 
+
+![](images/MATLAB/lineplot.jpg)
+
+```
+X = 1:14;
+Y1 = [6 5 3 4 6 7 7 12 11 9 7  10 12 11];
+Y2 = [10 8 11 9 7 4 3 5 8 6 4 1 2 3];
+Color1 =  [86, 114, 178]/255;
+Color2 = [239, 204, 37]/255;
+
+figure
+hold on
+plot(X, Y1, 'o-', 'Color', Color1, 'MarkerFaceColor', Color1, 'LineWidth', 2)
+plot(X, Y2, 'o-', 'Color', Color2, 'MarkerFaceColor', Color2, 'LineWidth', 2)
+xlabel('X Data')
+ylabel('Y Data')
+ylim([0 13])
+set(gca, 'FontName', 'Gill Sans MT', 'FontSize', 12)
+title('Line Plot Example')
+legend({'Line 1', 'Line 2'}, 'Location', 'southwest')
+```
 
 #### scatter()
 A scatter plot, in which x and y values of each point are provided as seperate arrays, in the order of magnitude for each axis. There is no connecting line between the points.
@@ -360,6 +385,7 @@ Bar graphs, stacked or clustered however you want.
 This creates a grid, and fills in each cell with a color, with the color intensity indicating the value from an input matrix. Best accompanied by a colorbar.
 
 #### boxplot()
+Plots the distrubtion (especially median and interquartile range) of a vector of data (or seperately for every column of a matrix). Good for overview of multiple distributions.
 
 #### histogram()
 
