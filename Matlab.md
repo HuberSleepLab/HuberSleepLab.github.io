@@ -403,6 +403,28 @@ plot(x, log2(y))
 
 <p>&nbsp;</p>
 
+#### Plotting variables
+Different types of plots require different inputs. They can either be specified inside the `plot()` call, or afterwards.
+
+```m
+figure
+plot(x, y, 'Color'[1 0 0])
+title('X vs Y')
+set(gca, 'FontSize', 12) % sometimes, you have to be fancy
+```
+
+Important plotting variables include:
+- labels: e.g. title, axes labels, axes ticks, etc.
+- colors: both for lines, filled in shapes, etc
+- font properties: font size, font name, etc
+- axes limits & orientations
+- "alpha": the transparency of something
+
+Just see the documentation on how to use them.
+
+
+<p>&nbsp;</p>
+
 ### Common plot types
 
 #### plot()
@@ -515,28 +537,6 @@ This calculates the distribution of a given variable's values. For this example 
 figure
 histogram([Y1, Y2])
 ```
-
-
-<p>&nbsp;</p>
-
-### Plotting variables
-Different types of plots require different inputs. They can either be specified inside the `plot()` call, or afterwards.
-
-```m
-figure
-plot(x, y, 'Color'[1 0 0])
-title('X vs Y')
-set(gca, 'FontSize', 12) % sometimes, you have to be fancy
-```
-
-Important plotting variables include:
-- labels: e.g. title, axes labels, axes ticks, etc.
-- colors: both for lines, filled in shapes, etc
-- font properties: font size, font name, etc
-- axes limits & orientations
-- "alpha": the transparency of something
-
-Just see the documentation on how to use them.
 
 
 <p>&nbsp;</p>
