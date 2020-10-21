@@ -15,7 +15,7 @@ This series of instructions provides you with everything you need to do to get f
 0. Info about the data (Sophia S.)
 1. EEG recording parameters & referencing (By Melanie F.)
 2. Filtering & downsampling (By Sven L.)
-3. Artifacts & artefact rejection (By Sven L.)
+3. Artifacts & artifact rejection (By Sven L.)
 4. Power analysis (By Jelena S.)
 5. Topographies (By Niklas S.)
 6. Statistics (By Niklas S.)

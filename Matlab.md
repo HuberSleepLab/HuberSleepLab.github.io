@@ -78,7 +78,7 @@ Variable names cannot include any characters except letters and numbers, and the
 
 <p>&nbsp;</p>
 
-### Batch math operations
+### Arrays
 Also unlike calculators, you can apply a formula to a whole list of numbers like so:
 
 ```m
@@ -134,7 +134,7 @@ A = A*B'; % fancy matrix multiplication called a "dot product"
 
 ### Logical operators
 Other than numbers, you can have a variable (or array, or matrix) that is just `true` or `false`. These are also represented as 1 and 0, respectively, and are called **booleans**.
-> N.B. "true" and "false" get automatically symbolized as 1 and 0 by MATLAB, but 1 and 0 don't automatically mean true and false for MATLAB, so if something doesn't work, try `logical([1 0 0 1])` around your desired boolean.
+> N.B. "true" and "false" get automatically symbolized as 1 and 0 by MATLAB, but 1 and 0 don't automatically mean true and false when you write them, so if something doesn't work, try `logical([1 0 0 1])` around your desired boolean.
 
 Just like with addition, you can combine logical operators with `&` (and) or `|` (or).
 
@@ -148,7 +148,7 @@ F1 = T & F; % this is false
 T2 = (T | F) & (T | T);
 ```
 
-You can query if something is equal `A==B`, not equal `A~=B`, greater `A>B`, less than `A<B`, or greater or equal to `A<=B` ... and the outcome will be a boolean.
+You can query if something is equal `A==B` not equal `A~=B` greater `A>B` less than `A<B` or greater or equal to `A<=B` ... and the outcome will be a boolean.
 
 These can all be combined: `(A<B) | (B==0 & A>5)`;
 
@@ -177,16 +177,18 @@ You cannot have a matrix or array with both numbers and strings. To have one var
 Cell = {'Hanna', 'Sophia', 'Mark'; 2, 4, 5};
 ```
 
+Cells are a pain, but sometimes that's all you have to work with. It's the preferred "array" for strings. 
+
 
 <p>&nbsp;</p>
 
 ### Indexing
-Sometimes, you don't want everything contained in a variable. So you "index" a subsection by selecting which numbered element in the array that you want. Indexing can either be done with just one number `A(4)` (if it's one array it takes the 4th element, if its a matrix, it scans each column until it reaches the 4th element) or with a list:
+Sometimes, you don't want everything contained in a variable. So you "index" a subsection by selecting which numbered element in the array you want. Indexing can either be done with just one number `A(4)` (if it's an array it takes the 4th element, if its a matrix, it scans each column until it reaches the 4th element) or with a list:
 
 ```m
 A = [1:100; 51:150];
 
-B = A(2, 40:45); % sele
+B = A(2, 40:45);
 
 Indx = 1:5;
 
@@ -204,7 +206,7 @@ A(2, Indx) = 10:15; % you can index an already existing variable to assign new c
 Indexing is best done with booleans, by having an array of booleans the same size as that dimention, and it will select only the spots corresponding to "true". The best way to get such an array is through a boolean operation.
 
 ```m
-A = [1, 2, -5, 3, 6; -2, -3, 2];
+A = [1, 2, -1; -5, 3, 6; -2, -3, 2];
 Indx = A < 0;
 A(Indx) = 0; % assign 0 to all negative numbers in A
 ```
@@ -216,7 +218,7 @@ A(Indx) = 0; % assign 0 to all negative numbers in A
 Most programming languages have at least some of these features. They are instructions for the program on what to do in specified circumstances.
 
 #### For loops
-Loops through all the lines between the "for" line and "end", each time assigning a different number to the variable "Indx".
+This loops through all the lines between the "for" line and "end", each time assigning a different number to the variable "Indx".
 
 ```m
 A = 5;
@@ -229,8 +231,8 @@ end
 Checks if something is true or false, and accordingly will run different lines of code.
 
 ```m
-if A==B
-    S = 'they're equal!';
+if A == B
+    S = 'they are equal!';
 elseif A < B
     S = 'A is less than B';
 else
@@ -249,7 +251,8 @@ end
 ```
 
 #### How to leave loops
-If you want to skip a specific loop, you use `continue`; if you want to stop looping, you use `break`
+If you want to skip a specific loop, you use `continue`
+If you want to stop looping, you use `break`
 
 ```m
 A = 1;
@@ -262,7 +265,7 @@ while true % never end the loop
     elseif A >= 100
         break
     end
-    B = A+5; % this doesn't get executed if something in the if statements is true
+    B = A + 5; % this doesnt get executed if something in the i statements is true
 end
 ```
 
@@ -307,7 +310,7 @@ end
 These are symbols already used above but not specifically addressed. 
 
 - **Space**: spaces in between things are mandatory between two variables, and are entirely optional between operators (`+/^`) and between variables and operators
-- `=` this symbol is ONLY for establishing the content of a new variable. Whatever is on the left is a variable name, whatever is on the right is the thing you are putting in it
+- `=` just one equal sign is ONLY for establishing the content of a new variable. Whatever is on the left is a variable name, whatever is on the right is the thing you are putting in it
 - **New line**: you need a new line whenever you have established a new variable (or executing a function, we'll get to that later). 
 - `;` indicates that what comes after is a "new line", so you could write a series of variables in one line like so `a=3;b=2;z=5`, but this is best avoided. It also seperates new rows in a matrix. If you run any line of code *without* this at the end, it will print it in the console; this get's annoying fast, so most lines of code will end with a semicolon
 - `,` this can only be used to either list elements in the same row when creating a matrix/array, or to seperate the dimentions used in indexing a multidimentional matrix (`A(2,5)`)
@@ -367,7 +370,7 @@ J = exp(sum(A), B)/log(A(end)+B);
 Special data types are created through functions. The main ones include:
 - `T = table()` creates an empty table
 - `C = cell()` creates an empty cell array
-- `S = struct()` creates a structure. These are special, and the MATLAB documentation explains them better than I can.
+- `S = struct()` creates a structure. These are special, and the MATLAB [documentation](https://ch.mathworks.com/help/matlab/structures.html) explains them better than I can.
 - `D = datenum()` weird number that actually represents a time
 > Common source of errors in code is indexing variables that have a specific data type in the wrong way. This will take a lot of trial and error before you get the hang of it.
 
