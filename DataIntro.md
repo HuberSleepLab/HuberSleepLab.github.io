@@ -31,7 +31,7 @@ Early studies found that **slow wave activity** (SWA, 1-4Hz delta power) during 
 
 Basically, a circadian component regulates sleep drive based on time of day, and a **homeostatic** component increases sleep drive with increasing time awake. SWA is a marker for sleep pressure of the homeostatic component. Therefore:
 
-<u>Slow wave activity should be higher at the beginning of the night after 24h of wake.</u>
+- Slow wave activity should be higher at the beginning of the night after 24h of wake
 
 
 <p>&nbsp;</p>
@@ -45,7 +45,7 @@ For simplicity, this tutorial provides the data already in a MATLAB-friendly for
 ### Organization of data provided for the tutorial
 For every participant, 2 **.mat** files are provided, *night pre* and *night post* relative to the 24h wake period. Each is only the first 2 hours of the night, so that the files aren't too heavy. Data can be loaded into MATLAB with the following code:
 
-```
+```m
 Filename = 'P1_nightpre.mat';
 Filepath = fullfile('C:\Users\me', 'testdata', 'raw');
 
