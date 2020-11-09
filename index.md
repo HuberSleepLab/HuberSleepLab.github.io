@@ -6,20 +6,20 @@ This series of instructions provides you with everything you need to do to get f
 
 ### Important tools you definitely should know first
 
-1. Git (By Niklas S.)
+1. [Git](Git.html) (By Niklas S.)
 2. [MATLAB](Matlab.html) (By Sophia S.)
 3. Proper MATLAB, i.e. how to actually write nice code (By Sophia S.)
 
 
 ### How to build a topoplot
 
-0. Info about the data (Sophia S.)
-1. EEG recording parameters & referencing (By Melanie F.)
-2. Filtering & downsampling (By Sven L.)
-3. Artifacts & artifact rejection (By Sven L.)
-4. Power analysis (By Jelena S.)
-5. Topographies (By Niklas S.)
-6. Statistics (By Niklas S.)
+0. [Info about the data](DataIntro.html) (Sophia S.)
+1. [EEG recording parameters & referencing](EEGIntro.html) (By Melanie F.)
+2. [Filtering & downsampling](Filtering.html) (By Sven L.)
+3. [Artifacts & artifact rejection](Artifacts.html) (By Sven L.)
+4. [Power analysis](Power.html) (By Jelena S.)
+5. [Topographies](Topographies.html) (By Niklas S.)
+6. [Statistics](Statistics.html) (By Niklas S.)
 
 
 <p>&nbsp;</p>
