@@ -1,4 +1,4 @@
-# Big Title
+# Statistics
 > By Niklas Schneider (*Last updated: not yet*)
 
 ### Example Intro
