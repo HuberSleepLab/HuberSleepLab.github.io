@@ -1,5 +1,5 @@
 # Example data for this tutorial
-> By Sophia Snipes
+> By Sophia Snipes (*Last updated: November 2020*)
 
 The data used for this tutorial comes from Snipes et al. (2021, in progress). This is a sleep deprivation study, in which the first 2 hours of the night before and the night after 24h sleep deprivation period are provided.
 
@@ -62,6 +62,8 @@ load(fullfile(Filepath, Filename), 'data', 'srate', 'chanlocs')
 
 ### BrainAmp
 [Here]() is an example script of how to convert data from BrainAmp's **.eeg** format into [EEGLAB's]() **.set** format. While most of this tutorial does not use any toolboxes, most researchers use the EEGLAB or fieldtrip toolbox at least some of the time for EEG data.
+To run the linked script, you must first have downloaded and run the EEGLAB toolbox in MATLAB. 
+
 [This]() script is the one used to convert the set files into the mat files provided for this tutorial. 
 
 
