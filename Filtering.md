@@ -27,6 +27,14 @@ Important in our line of research is at what phase of a slow wave a tone was pre
 
 FIR IIR filters...
 
+## Example on how to build a filter
+
+## What can go wrong?
+
+## How to report
+
+## Alternatives
+
 
 
 ### Example Intro
