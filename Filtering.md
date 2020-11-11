@@ -19,6 +19,14 @@ may enhance fast oscillations. There are numerous different filter types (such a
 
 Show impulse and impulse response function ...
 
+## Some terminology
+An important goal of neuroscience is to determine causal relations, for example, between a stimulus
+and brain activity, or between one brain event and another. If a filter is *causal*, the filter output depends only on past and present samples of the input. If a filter is *acausal*, the filter output also depends on future samples of the input. 
+
+Important in our line of research is at what phase of a slow wave a tone was presented. Some filters introduce a phase shift which is different for each frequency in the signal. In that case, when we analyze the data with a phase shift, we would conclude that tones were presented at a wrong phase of the wave. This is why zero-phase filters are especially important to us. They change the phase of the signal linearly (or evenly) for all frequencies, so that it can be easily corrected. In Matlab.. firfilt .. filtilt..
+
+FIR IIR filters...
+
 
 
 ### Example Intro
