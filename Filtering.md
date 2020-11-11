@@ -5,10 +5,11 @@
 One of the major challenges of brain science is that measurements are contaminated by *noise* and *artifacts*. These may include environmental noise (e.g. electrical line noise), instrumental noise, or physiological noise (e.g. signal sources within the body that are not of interest, such as heart beat). **Filters** are commonly used to reduce noise and improve data quality. This is possible in case the noise occupies a spectral region other than your signal of interest. Then the filter can attenuate the noise in the data and leaves the signal of interest (i.e. brain signal) "untouched" (in reality, the signal of interest is also affected by the filter, but less so).
 
 ## Filter applications
-For example, a direct current (DC) component or slow fluctuation may be removed with a high-pass filter, power line components may be attenuated by a notch filter at 50 or 60 Hz, and
-unwanted high-frequency components may be removed by smoothing the data with a low-pass filter.
+For example, a direct current (DC) component or slow fluctuation may be removed with a **high-pass filter** (a high-pass filter leaves high frequencies in the signal, they "pass" the filter), unwanted high-frequency components may be removed by smoothing the data with a **low-pass filter** (low frequencies are left in the signal, they "pass" the filter), and power line components may be attenuated by a **notch filter** at 50 or 60 Hz (only a specified frequency range is filtered out).
 
 Show plots with DC offset, lines noise and high-frequency components. Before and after...
+
+Show plots visualizing HP LP notch and BP filter ...
 
 ## What Is a Filter?
 For many of us, a filter is "a thing that modifies the spectral content of a signal." Mathematically, a filter is an operation that produces each sample of the output waveform y as a weighted sum of several samples of the input waveform x. This operation is called convolution and wonderfully explained in this youtube video https://www.youtube.com/watch?v=9Hk-RAIzOaw.
