@@ -14,6 +14,13 @@ Show plots visualizing HP LP notch and BP filter ...
 ## What Is a Filter?
 For many of us, a filter is "a thing that modifies the spectral content of a signal." Mathematically, a filter is an operation that produces each sample of the output waveform y as a weighted sum of several samples of the input waveform x. This operation is called convolution and wonderfully explained in this youtube video https://www.youtube.com/watch?v=9Hk-RAIzOaw.
 
+The exact way of how a filter "changes" the data is defined by it's **impulse response function** (that is, the output in response to an impulse). Some filters may smooth the input waveform, others
+may enhance fast oscillations. There are numerous different filter types (such as ...) and different ways to implement those filters into software (such as ...). Respectively, there is considerable body of theory, methods, and lore on how best to design and implement a filter for the needs of an application.
+
+Show impulse and impulse response function ...
+
+
+
 ### Example Intro
 We just love the **2-process model** by *Alexander Borberly*:
 ![](images/intro/2processmodel.png)
