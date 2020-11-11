@@ -1,6 +1,9 @@
 # Filtering and Downsampling
 > By Sven Leach (*last updated: not yet*)
 
+### Background
+One of the major challenges of brain science is that measurements are contaminated by *noise* and *artifacts*. These may include environmental noise (e.g. electrical line noise), instrumental noise, or physiological noise (e.g. signal sources within the body that are not of interest, such as heart beat). **Filters** are commonly used to reduce noise and improve data quality. This is possible in case the noise occupies a spectral region other than your signal of interest. Then the filter can attenuate the noise in the data and leaves the signal of interest (i.e. brain signal) "untouched" (in reality, the signal of interest is also affected by the filter, but less so).
+
 ### Example Intro
 We just love the **2-process model** by *Alexander Borberly*:
 ![](images/intro/2processmodel.png)
