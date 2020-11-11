@@ -10,6 +10,9 @@ unwanted high-frequency components may be removed by smoothing the data with a l
 
 Show plots with DC offset, lines noise and high-frequency components. Before and after...
 
+## What Is a Filter?
+For many of us, a filter is "a thing that modifies the spectral content of a signal." Mathematically, a filter is an operation that produces each sample of the output waveform y as a weighted sum of several samples of the input waveform x. This operation is called convolution and wonderfully explained in this youtube video https://www.youtube.com/watch?v=9Hk-RAIzOaw.
+
 ### Example Intro
 We just love the **2-process model** by *Alexander Borberly*:
 ![](images/intro/2processmodel.png)
