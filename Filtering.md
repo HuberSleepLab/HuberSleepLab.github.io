@@ -4,6 +4,12 @@
 ### Background
 One of the major challenges of brain science is that measurements are contaminated by *noise* and *artifacts*. These may include environmental noise (e.g. electrical line noise), instrumental noise, or physiological noise (e.g. signal sources within the body that are not of interest, such as heart beat). **Filters** are commonly used to reduce noise and improve data quality. This is possible in case the noise occupies a spectral region other than your signal of interest. Then the filter can attenuate the noise in the data and leaves the signal of interest (i.e. brain signal) "untouched" (in reality, the signal of interest is also affected by the filter, but less so).
 
+## Filter applications
+For example, a direct current (DC) component or slow fluctuation may be removed with a high-pass filter, power line components may be attenuated by a notch filter at 50 or 60 Hz, and
+unwanted high-frequency components may be removed by smoothing the data with a low-pass filter.
+
+Show plots with DC offset, lines noise and high-frequency components. Before and after...
+
 ### Example Intro
 We just love the **2-process model** by *Alexander Borberly*:
 ![](images/intro/2processmodel.png)
