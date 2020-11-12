@@ -1,11 +1,11 @@
 # Filtering and Downsampling
 > By Sven Leach (*last updated: not yet*)
 
-### Background
+## Filtering: Background
 One of the major challenges of brain science is that measurements are contaminated by *noise* and *artifacts*. These may include environmental noise (e.g. electrical line noise), instrumental noise, or physiological noise (e.g. signal sources within the body that are not of interest, such as heart beat). **Filters** are commonly used to reduce noise and improve data quality. This is possible in case the noise occupies a spectral region other than your signal of interest. Then the filter can attenuate the noise in the data and leaves the signal of interest (i.e. brain signal) "untouched" (in reality, the signal of interest is also affected by the filter, but less so).
 
 ## Filter applications
-For example, a direct current (DC) component or slow fluctuation may be removed with a **high-pass filter** (a high-pass filter leaves high frequencies in the signal, they "pass" the filter), unwanted high-frequency components may be removed by smoothing the data with a **low-pass filter** (low frequencies are left in the signal, they "pass" the filter), and power line components may be attenuated by a **notch filter** at 50 or 60 Hz (only a specified frequency range is filtered out).
+For example, a direct current (DC) component or slow fluctuation may be removed with a **high-pass filter** (a high-pass filter leaves high frequencies in the signal, they "pass" the filter), unwanted high-frequency components may be removed by smoothing the data with a **low-pass filter** (low frequencies are left in the signal, they "pass" the filter), and power line components may be attenuated by a **notch filter** at 50 or 60 Hz (only a specified frequency range is filtered out). A filter that removes low and high frequencies at the same time is called a **band-pass filter** (a specified frequency band, such as 10-20 Hz "passes" the filter).
 
 Show plots with DC offset, lines noise and high-frequency components. Before and after...
 
@@ -28,12 +28,45 @@ Important in our line of research is at what phase of a slow wave a tone was pre
 FIR IIR filters...
 
 ## Example on how to build a filter
+Within MATLAB alone there are numerous ways on how to build and run a filter. The easiest way is probably to use functions provided by external toolboxes, such as `eegfilt()` or `pop_eegfiltnew()` from the EEGLAB toolbox or `ft_preproc_lowpassfilter()` from the FIELDTRIP toolbox. You typically just give those functions the cut-off frequencies of your choice and they will design and apply the filter for you. When using functions from toolboxes, you can rely on the filterdesign of the people who designed those toolboxes. While this is great for the start, it is usually a blind approach as you do not need to investigate the impulse response function of the filter, meaning that you do not know how well it performance in the frequency vs. time domain.
+
+A more sophisticated and effortful approach, which also requires some knowledge about how filters work, is to design your own filter. MATLAB provides great functionality to design and test a filter rather easily. When executing the command `filterDesigner`, MATLAB's filter Designer opens up which is a visual GUI to design your own filter with various types of specifications. An example of such a filter that I build with MATLAB's filter Designer is this 0.5 Hz high-pass filter.
+
+```m
+srateFilt    = 500;   % sampling rate (Hz)
+PassFrq      = 0.5;   % pass-band frequency (Hz)
+StopFrq      = 0.20;  % stop-band frequency (Hz)
+PassRipple   = 0.02;  % pass-band ripple
+StopAtten    = 60;    % stop-band attenuation (dB)
+HiPassFilt   = designfilt('highpassfir','PassbandFrequency',PassFrq,'StopbandFrequency',StopFrq,'StopbandAttenuation',StopAtten,'PassbandRipple',PassRipple,'SampleRate',srateFilt,'DesignMethod','equiripple');
+```
+
+Once the filter is built, you can investigate the filter by visualizing it's impulse reponse using `impz(HiPassFilt, filtord(HiPassFilt))`. This will tell you how the filter will affect an impulse (all zeros expect for the first sample point, which is 1). From the impulse response you can for example see how much your filter "rings" in the time domain, meaning how much the first datapoint is smeared out into the past and/or future in the form of oscillations that become smaller after time.
 
 ## What can go wrong?
+Unortunately, the use of filters raises many concerns, some serious, others merely inconvenient. Therefore it is important to understand them, and to report enough details that the reader or listener too fully understands them. 
+
+An obvious concern is loss of useful information suppressed together with the noise (a filter does not distinguish between brain signal and noise, it only distinguishes between frequencies). Slightly less obvious is the distortion of the temporal features of the target: peaks or transitions may be smoothed, steps may turn into pulses, and artifactual features may appear, such as response peaks, or oscillations ("ringing") created de novo by the filter in response to some feature of the target or noise signal. The morphology of these artifacts depends on both the filter
+and the brain activity. Most insidious, however, is the blurring of temporal or causal relations between features within the signal, or between the signal and external events such as stimuli.
 
 ## How to report
+As filters can distort the signal, it is extremely important to thourougly report the filters you have used so that the reader can form an opinion about possible effects of filtering. In short, you are save when you report
+
+1.  The filter type
+2.  The filter order
+3.  Frequency parameters
+4.  Whether it was applied in one or both directions (filtfilt)
+5.  Advanced: include a plot of the impulse (or step) response function
 
 ## Alternatives
+Depending on the usecase of your filter, there may be better alternatives. For the example, if the high-pass filter is required merely to remove a constant DC offset, consider subtracting the overall mean instead. If there is also a slow trend, consider "(robust) detrending" rather than high-pass filtering. Detrending involves fitting a function (slowly varying so as to fit the trend but not faster patterns) to the data and then subtracting the fit. Suitable functions include low-order polynomials. Like filtering, detrending is sensitive to temporally localized events such as glitches; however, these can be addressed by "robust detrending" (de Cheveigne et al, 2016, de Cheveigne´ and Arzounian, 2018)
+
+## Downsampling
+Downsampling reduces the sampling rate of your data to improve processing speed and to save disc space. We usually record EEGs with a sampling rate of 500 Hz, meaning that we record 500 sampling points per second.
+
+In case one is only interested in oscillations around, let's say, 0.5 to 40 Hz, this is an information overload. Defined by the Nyquest theorem (LINK), a 40 Hz oscillation can be represented in the data with a sampling frequency of 80 Hz (better 120 Hz). You could therefore downsample the recording to produce an approximation of the sequence that would have been obtained by sampling the signal at 125 Hz. It is generally better to choose a sampling rate which is a multiple of the original samplring rate (4 * 125 = 500), as no "new" datapoints need to be estimated. Downsampling at, let's say, 128 Hz would require interpolating non-existing data points.
+
+Lastly, it is important to say that you should always low-pass filter before downsampling (aliasing problem (LINK)).
 
 
 
