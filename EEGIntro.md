@@ -4,7 +4,9 @@
 ### Sleep EEG recording parameters
 We are using high-density (HD) systems for our sleep EEG recordings at the Children’s Hospital Zurich. High-density means that there are many electrodes (more than in the classical setup used in clinics) providing a high spatial resolution. In our case, we are using 128 electrodes. 124 of which are implemented in the EEG-net and include the electrodes used to detect eye movements (EOG). Two are placed on the earlobes (alternative references, see below) and two on the chin muscles (to measure muscle activity, EMG). There are two additional electrodes implemented in the middle of the net, a reference electrode (Cz) and a ground electrode (COM) to reduce noise.
 
-![](images\HDnet\Boy_HDEEG.jpg) | ![](images\HDnet\128channelNet.png)
+| Sleep recording with HD-EEG net | HD-EEG net with 128 electrodes      |
+| ------------------------------- | ----------------------------------- |
+![](images\HDnet\Boy_HDEEG.jpg)   | ![](images\HDnet\128channelNet.png)
 
 Since we are measuring voltage, so the difference in electrical potential between two points, we always need a reference to be able to record data. We record our data with a common reference that is located on top of the head (cz, midpoint between the ears and between nasion and inion). All 128 electrodes are referenced to the cz reference electrode, meaning that we measure the difference in electrical potential between each of the 128 electrodes and the reference electrode.
 
