@@ -7,6 +7,8 @@ One of the major challenges of brain science is that measurements are contaminat
 ## Filter applications
 For example, a direct current (DC) component or slow fluctuation may be removed with a **high-pass filter** (a high-pass filter leaves high frequencies in the signal, they "pass" the filter), unwanted high-frequency components may be removed by smoothing the data with a **low-pass filter** (low frequencies are left in the signal, they "pass" the filter), and power line components may be attenuated by a **notch filter** at 50 or 60 Hz (only a specified frequency range is filtered out). A filter that removes low and high frequencies at the same time is called a **band-pass filter** (a specified frequency band, such as 10-20 Hz "passes" the filter).
 
+![](images/filters/DC_line_noise_clean.png)
+
 Show plots with DC offset, lines noise and high-frequency components. Before and after...
 
 Show plots visualizing HP LP notch and BP filter ...
