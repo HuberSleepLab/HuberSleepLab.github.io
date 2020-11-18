@@ -11,7 +11,8 @@ For example, a direct current (DC) component or slow fluctuation may be removed 
 
 Show plots with DC offset, lines noise and high-frequency components. Before and after...
 
-Show plots visualizing HP LP notch and BP filter ...
+Here you can see the four different filter types and how much these specific examples attenuate certain frequency ranges. The attenuation can be visualized in on a logarithmic scale, usually [decibels (dB)](https://en.wikipedia.org/wiki/Decibel), or on a linear scale, usually percent (%). Zero attenuation means that those frequencies are not touched. Positive attenuation means that frequencies become stronger. Negative attenuation refers to a reduction in amplitude of those frequencies. Those plots show the attenuatoin on a logarithmic scale. As such, an attenuation of -40 dB is not double as strong as -20 dB (as it would be the case on a linear scale), but actually [100x stronger](https://en.wikipedia.org/wiki/Decibel).
+![](images/filters/Filter_types.png)
 
 ## What Is a Filter?
 For many of us, a filter is "a thing that modifies the spectral content of a signal." Mathematically, a filter is an operation that produces each sample of the output waveform y as a weighted sum of several samples of the input waveform x. This operation is called convolution and wonderfully explained in this youtube video https://www.youtube.com/watch?v=9Hk-RAIzOaw.
