@@ -25,18 +25,19 @@ may enhance fast oscillations. There are numerous different filter types (such a
 ![](images/filters/Impulse_step_response.png)
 
 ## Some terminology
-An important goal of neuroscience is to determine causal relations, for example, between a stimulus
-and brain activity, or between one brain event and another. If a filter is *causal*, the filter output depends only on past and present samples of the input. If a filter is *acausal*, the filter output also depends on future samples of the input. 
+An important goal of neuroscience is to determine causal relations, for example, between a stimulus and brain activity, or between one brain event and another. If a filter is *causal*, the filter output depends only on past and present samples of the input. If a filter is *acausal*, the filter output also depends on future samples of the input. 
 
 Important in our line of research is at what phase of a slow wave a tone was presented. Some filters introduce a phase shift which is different for each frequency in the signal. In that case, when we analyze the data with a phase shift, we would conclude that tones were presented at a wrong phase of the wave. This is why zero-phase filters are especially important to us. They change the phase of the signal linearly (or evenly) for all frequencies, so that it can be easily corrected. In Matlab.. firfilt .. filtilt..
 
-FIR IIR filters...
+One of the most important distinction of filters is whether a filter is an **Infinite Impulse Response (IIR)** or a **Finite Impulse Response (FIR)** filter ([their mathematical equation](https://community.sw.siemens.com/s/article/introduction-to-filters-fir-versus-iir) decides to which category a filter belongs, but we will elaborate on equations here). Conceptually, as the name suggests, these filters can be differentiated by their impulse response. An FIR filter has a finite effect on an impulse, meaning that the induced ringing will stop completely with time. The ringing induced by an IIR filter, on the other hand, is indefinite, meaning that the ringing will be reflected in the whole recording (while this is technically true, the ringing becomes unconsiderably small with time as well). In practice, IIR filters have the advantage that they are considerably faster due to their low filter order (somewhere around 1 to 10). FIR filter need a higher filter order (somewhere around 100 to 1000) to achieve the same attenuation of frequencies as a respective IIR filter. However, an IIR has nonlinear phase and stability issues. It is a bit like the fable of the tortoise and the hare. The FIR filter is like the tortoise in the race – slow and steady, and always finishes. The hare is like the IIR filter – very fast, but sometimes crashes and does not complete the race. This is why, generally speaking, FIR filters are prefered whenever computation time allows to do so (especially in real-time processing, computation speed is ciritical, which is why you will usually find IIR filters there).
 
 |                     | Infinite Impulse Response <br>(IIR)   | Finite Impulse Response <br>(FIR) |
 |---------------------|---------------------------------------|-----------------------------------|
 | Copmutational speed | Fast<br>(Low filter order)            | Slow<br>(High filter order)       |
 | Phase delay         | Not constant <br>(across frequencies) | Constant<br>(across frequencies)  |
 | Stability           | Sometimes                             | Always                            |
+
+Example of IIR and FIR with different filter orders ...
 
 ## Example on how to build a filter
 Within MATLAB alone there are numerous ways on how to build and run a filter. The easiest way is probably to use functions provided by external toolboxes, such as `eegfilt()` or `pop_eegfiltnew()` from the EEGLAB toolbox or `ft_preproc_lowpassfilter()` from the FIELDTRIP toolbox. You typically just give those functions the cut-off frequencies of your choice and they will design and apply the filter for you. When using functions from toolboxes, you can rely on the filterdesign of the people who designed those toolboxes. While this is great for the start, it is usually a blind approach as you do not need to investigate the impulse response function of the filter, meaning that you do not know how well it performance in the frequency vs. time domain.
