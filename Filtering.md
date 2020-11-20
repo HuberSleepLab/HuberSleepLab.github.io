@@ -22,8 +22,7 @@ For many of us, a filter is "a thing that modifies the spectral content of a sig
 
 The exact way of how a filter "changes" the data is defined by it's **impulse response function** (that is, the output in response to an impulse). Some filters may smooth the input waveform, others
 may enhance fast oscillations. There are numerous different filter types (such as ...) and different ways to implement those filters into software (such as ...). Respectively, there is considerable body of theory, methods, and lore on how best to design and implement a filter for the needs of an application.
-
-Show impulse and impulse response function ...
+![](images/filters/Impulse_step_response.png)
 
 ## Some terminology
 An important goal of neuroscience is to determine causal relations, for example, between a stimulus
