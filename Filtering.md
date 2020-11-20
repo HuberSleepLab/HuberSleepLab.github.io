@@ -18,7 +18,7 @@ Next you see a very common artifact in EEG data: [50 Hz (EU) or 60 Hz (USA) line
 ![](images/filters/DC_line_noise_clean.png)
 
 ## What Is a Filter?
-For many of us, a filter is "a thing that modifies the spectral content of a signal." Mathematically, a filter is an operation that produces each sample of the output waveform y as a weighted sum of several samples of the input waveform x. This operation is called convolution and wonderfully explained in this youtube video https://www.youtube.com/watch?v=9Hk-RAIzOaw.
+For many of us, a filter is "a thing that modifies the spectral content of a signal." Mathematically, a filter is an operation that produces each sample of the output waveform y as a weighted sum of several samples of the input waveform x. This operation is called convolution and wonderfully explained in this [youtube video](https://www.youtube.com/watch?v=9Hk-RAIzOaw).
 
 The exact way of how a filter "changes" the data is defined by it's **impulse response function** (that is, the output in response to an impulse). Some filters may smooth the input waveform, others
 may enhance fast oscillations. There are numerous different filter types (such as ...) and different ways to implement those filters into software (such as ...). Respectively, there is considerable body of theory, methods, and lore on how best to design and implement a filter for the needs of an application.
@@ -31,6 +31,12 @@ and brain activity, or between one brain event and another. If a filter is *caus
 Important in our line of research is at what phase of a slow wave a tone was presented. Some filters introduce a phase shift which is different for each frequency in the signal. In that case, when we analyze the data with a phase shift, we would conclude that tones were presented at a wrong phase of the wave. This is why zero-phase filters are especially important to us. They change the phase of the signal linearly (or evenly) for all frequencies, so that it can be easily corrected. In Matlab.. firfilt .. filtilt..
 
 FIR IIR filters...
+
+|                     | Infinite Impulse Response <br>(IIR)   | Finite Impulse Response <br>(FIR) |
+|---------------------|---------------------------------------|-----------------------------------|
+| Copmutational speed | Fast<br>(Low filter order)            | Slow<br>(High filter order)       |
+| Phase delay         | Not constant <br>(across frequencies) | Constant<br>(across frequencies)  |
+| Stability           | Sometimes                             | Always                            |
 
 ## Example on how to build a filter
 Within MATLAB alone there are numerous ways on how to build and run a filter. The easiest way is probably to use functions provided by external toolboxes, such as `eegfilt()` or `pop_eegfiltnew()` from the EEGLAB toolbox or `ft_preproc_lowpassfilter()` from the FIELDTRIP toolbox. You typically just give those functions the cut-off frequencies of your choice and they will design and apply the filter for you. When using functions from toolboxes, you can rely on the filterdesign of the people who designed those toolboxes. While this is great for the start, it is usually a blind approach as you do not need to investigate the impulse response function of the filter, meaning that you do not know how well it performance in the frequency vs. time domain.
