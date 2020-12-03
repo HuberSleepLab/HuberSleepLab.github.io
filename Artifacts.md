@@ -4,21 +4,30 @@
 ## Definition
 These noise, or artifact, sources include: line noise from the power grid, eye blinks, eye movements, heart beat, breathing, and other muscle activity. Some artifacts, such as eye blinks, produce voltage changes of much higher amplitude than the endogenous brain activity. 
 
+
+
+
+
+
+
+
+
 ## Types of artifacts
 https://www.researchgate.net/profile/Alok_Mittal/publication/228951651_ARTIFACT_REMOVAL_FROM_EEG_RECORDINGS-AN_OVERVIEW/links/00b7d52676ccdc1fa7000000/ARTIFACT-REMOVAL-FROM-EEG-RECORDINGS-AN-OVERVIEW.pdf
 
-### Line noise
-Strong signals from A/C power
-supplies can corrupt EEG data during transfer from
-the scalp electrodes to the recording device. Notch
-filters are often used to filter this artifact containing
-lower frequency line noise and harmonics. Notch
-filtering at these frequencies can remove useful
-information. Line noise can corrupt the data from
-some or all of the electrodes depending on the source
-of the problem.
+https://www.caeaccess.org/research/volume4/number1/tandle-2016-cae-651997.pdf
 
-### Eye blinks
+If the source is the subject’s body, that artefact is
+called physiological artefact. If the source is external it is
+called external artefact.
+
+### Physiological artifacts
+Physiological Artefacts
+Physiological artefacts are the artefact originated because of
+electrical activity of other body parts of the subject and
+obscure the EEG signals
+
+#### Eye blinks
 Eye Blink artifact: It is very common in EEG data,
 produces a high amplitude signal that can be many
 times greater than EEG signals of interest. Because
@@ -31,14 +40,30 @@ measurements are contaminated with EEG signals of
 interest and so simple subtraction is not a removal
 option
 
-### Eye movements
+Eye blinks produce high amplitude signals that can be many
+times greater than the amplitude of EEG signals of interest.
+Repetitive blinks produce slow wave, which appear like delta
+waves 
+
+#### Eye movements
 These artifacts are caused by the
 reorientation of the retinocorneal dipole [3]. The
 effect of this artifact is stronger than that of the eye
 blink artifact. Eye blinks and movements often occur
-at close intervals.
+at close intervals. 
 
-### Muscle Activity
+A movement of the eyes and eyeballs causes a change of
+potential in the electrodes near the eyes at Fp1-Fp2 (Fronto
+Parietal). Fluttering of the eyelids appears as a 3Hz –10Hz
+signal.
+
+ERG or Elertroretinogram is a potential difference between
+retina and cornea of the eye and with incident light; it
+changes, causing artefacts in EEG signals. Voltage amplitude
+is proportional to the angle of gaze. This artefact mixed with
+slow EEG is prominent in REM sleep 
+
+#### Muscle Activity
 These artifacts are caused by
 activity in different muscle groups including neck
 and facial muscles. These signals have a wide
@@ -46,14 +71,59 @@ frequency range and can be distributed across
 different sets of electrodes depending on the location
 of the source muscles.
 
-### Heart beat
+#### Heart beat
 When an electrode is placed on or near a
 blood vessel, it causes pulse, or heart beat, artifact.
 The expansion and contraction of the vessel
 introduce voltage changes into the recordings. The
 artifact signal has a frequency around 1.2Hz, but can
 vary with the state of the object. This artifact can
-appear as a sharp spike or smooth wave [4].
+appear as a sharp spike or smooth wave [4]. 
+
+#### Breathing
+
+#### Sweat
+Perspiration artefact exhibited as low amplitude, swelling
+waves that typically have durations greater than 2 sec; thus,
+they are beyond the frequency range of cerebrally generated
+EEG
+
+#### Movement
+
+
+### External Artefacts
+The sources of these artefacts are electronic gadgets,
+transmission lines etc.
+
+#### Line noise
+Strong signals from A/C power
+supplies can corrupt EEG data during transfer from
+the scalp electrodes to the recording device. Notch
+filters are often used to filter this artifact containing
+lower frequency line noise and harmonics. Notch
+filtering at these frequencies can remove useful
+information. Line noise can corrupt the data from
+some or all of the electrodes depending on the source
+of the problem.
+
+#### Electrode pops
+
+#### Phone Artefact
+This artefact is because of mobile phone signal. A high
+frequency signal appears as a spurious signal on the EEG
+signals. Remedy for this artefact is not to carry a mobile
+phone while recording this artefact shown in fig10.electrical
+characteristic shown in table 1.
+
+#### Poor electrode contact
+Poor electrode contact gives rise to low frequency artifacts,
+they are brief transients that are limited to one-electrode and
+synchronize with respiration due to the motion of the
+electrode. 
+
+
+
+
 
 
 
@@ -76,3 +146,19 @@ Show final matrix ...
 Show visualization of artndx.mat ...
 
 ### Other approaches
+
+#### Filter
+Using a band pass filter with a frequency band of artefact,
+particular artefact can be removed. This method is not a very
+useful method for analysis of the entire bandwidth of EEG, as
+artifacts can occur at any frequency. A 50 Hz notch filter can
+used for removal of transmission line frequency. Low pass
+filter can used for Oculogram artefact removal. 
+
+#### EOG subtraction
+
+#### ICA
+
+#### PCA
+
+#### Joint approximate diagonalisation of Eigen matrices (JADE)
