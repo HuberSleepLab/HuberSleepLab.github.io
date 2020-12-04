@@ -136,9 +136,8 @@ As sleep EEG consists hours and hours of data, cleaning sleep EEGs can usually b
 
 Show tick boxes of sleep scoring programm
 
-2.  This is why in a second step, we perform a semi-automatic artifact removal procedure on the remaining 20s epochs. For this, the power in slow-wave (0.75 – 4.5 Hz) and muscle (20 – 40 Hz) frequency band is computed for all remaining 20s epochs and all channels. More precisely (these are details now), the power is computed with an FFT routine (Hanning window, averages of five 4 s epochs). Next, power values of all epochs are visualized for each channel consecutively. Whenever the power in either the slow-wave or muscle frequency band peaks out from their neighbours, it is likely that this epoch contains an artifact and is removed.
-
-Show artifact removal Gui ...
+2.  This is why in a second step, we perform a semi-automatic artifact removal procedure on all 128 HD-EEG channels. For this, the power in the slow-wave (0.75 – 4.5 Hz) and muscle (20 – 40 Hz) frequency band is computed for all remaining 20s epochs and all channels. Remaining 20s epochs are those that were not marked as noisy during sleep scoring. The power is computed with an FFT routine (Hanning window, averages of five 4 s epochs). The power values of all epochs are visualized for each channel consecutively. Whenever the power in either the slow-wave or muscle frequency band peaks out from their neighbours, it is likely that this epoch contains an artifact and is removed.
+![](images/artifacts/artndxn_delta_text.png)
 
 3.  Eventually you will build a matrix (channel x epochs) of zeros and ones. Clean epochs are labelled as ones, whereas noisy epochs are reffered to with zeros. We usually perform our analyses only on those parts of the data, in which *all* channels are clean, meaning in which all channels have the number one.
 
