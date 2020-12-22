@@ -57,13 +57,14 @@ Both FIR and IIR filters attenuate unwanted frequencies better at a larger filte
 
 
 ## Phase shift
-Important in our line of research is at what phase of a slow wave an auditory stimulus was presented. Some filters introduce a phase shift which is different for each frequency in the signal. When analyzing data to which we introduced a phase shift by the type of filter we applied, we would assume a completely wrong phase precision of our stimulation algorithm. This is why *zero-phase filters* are especially important to us. FIR filter change the phase of the signal linearly (or evenly) for all frequencies, so that it can be easily corrected. In practice, you can either use the function `firfilt()` together with an FIR filter. It applies the filter once and corrects for the introduced **linear** phase shift. If you use an IIR filter, you should use the function `filtfilt()` to filter your data. This function applies the filter twice in both directions (also called *two-way filtering*) and by that reversing **any** introduced phase shift.
+Important in our line of research is at what phase of a slow wave an auditory stimulus was presented. Some filters introduce a phase shift which is different for each frequency in the signal. When analyzing data to which we introduced a phase shift by the type of filter we applied, we would assume a completely wrong phase precision of our stimulation algorithm. This is why *zero-phase filters* are especially important to us. FIR filter change the phase of the signal linearly (or evenly) for all frequencies, so that it can be easily corrected. In practice, you can either use the function `firfilt()` together with an FIR filter. It applies the filter once and corrects for the introduced **linear** phase shift. The function is part of the EEGLAB toolbox. If you use an IIR filter, you should use the function `filtfilt()` to filter your data. This function applies the filter twice in both directions (also called *two-way filtering*) and by that reversing **any** introduced phase shift.
 
-![](images/filters/Phase_response.png)
+![](images/filters/Phase_response.png) 
 FIGURE CAPTION??? one radian is 180/π degrees (~ 57.3°). In figure xx you can additionally see that the linear phase shift of the FIR filter shifted the impulse response 0.325 s to the future. The shift can be easily inferred from the filter order of the filter, which the `firfilt()` function does in order to correct for this shift.
 
 
-Consequences of two-way filtering...
+### Consequences of two-way filtering
+While `filtfilt()` is a convenient option to circumvent the problem with non-linear phase shift of IIR filters, you should be aware of the consequences. What you do is filtering the data twice, meaning that you also double the attenuation of your data, meaning that a frequency which was attenuated at 60 db before, is now attenuated at 120 db and should also be reported in your publication as such. While this seems to be a wanted side effect, be aware that any modifications to your pass band also double in magnitude. Conceptually, two-way filtering should be avoided whenever possible (why would you repeat a processing step if you can do it once).
 
 ## Some terminology
 An important goal of neuroscience is to determine causal relations, for example, between a stimulus and brain activity, or between one brain event and another. If a filter is *causal*, the filter output depends only on past and present samples of the input. If a filter is *acausal*, the filter output also depends on future samples of the input. 
