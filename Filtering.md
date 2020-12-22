@@ -32,18 +32,17 @@ On the bottom of the figure you see a very common artifact in EEG data: [50 Hz (
 ## What Is a Filter?
 For many of us, a filter is "a thing that modifies the spectral content of a signal". Mathematically, a filter is an operation that produces each sample of the output waveform y as a weighted sum of several samples of the input waveform x. This operation is called convolution and wonderfully explained in this [youtube video](https://www.youtube.com/watch?v=9Hk-RAIzOaw).
 
-The exact way of how a filter "changes" the data is defined by it's **impulse response function** (that is, the output in response to an impulse). Some filters may smooth the input waveform, others
-may enhance fast oscillations. There are numerous different filter types (such as ...) and different ways to implement those filters into software (such as ...). Respectively, there is considerable body of theory, methods, and lore on how best to design and implement a filter for the needs of an application.
+The exact way of how a filter "changes" the data is defined by it's **impulse response function** (that is, the output in response to an impulse). Some filters may smooth the input waveform, others may enhance fast oscillations. There are numerous different filter types (such as window-based FIR filter, butterworth IIR filter, chebyshev IIR filter, etc.) and different ways to implement those filters into software (by using toolboxes such as [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) or designing your own filter either by hand or with helpful add-ins, such as [MATLAB's filter designer](https://ch.mathworks.com/help/signal/ug/introduction-to-filter-designer.html). Respectively, there is considerable body of theory, methods, and lore on how best to design and implement a filter for the needs of an application.
+
 ![](images/filters/Impulse_step_response.png)
+FIGURE CAPTION???
 
-## Some terminology
-An important goal of neuroscience is to determine causal relations, for example, between a stimulus and brain activity, or between one brain event and another. If a filter is *causal*, the filter output depends only on past and present samples of the input. If a filter is *acausal*, the filter output also depends on future samples of the input. 
-
-Important in our line of research is at what phase of a slow wave a tone was presented. Some filters introduce a phase shift which is different for each frequency in the signal. In that case, when we analyze the data with a phase shift, we would conclude that tones were presented at a wrong phase of the wave. This is why zero-phase filters are especially important to us. They change the phase of the signal linearly (or evenly) for all frequencies, so that it can be easily corrected. In Matlab.. firfilt .. filtilt..
-
-Plot with even and uneven phase shift ...
-
+## FIR vs. IIR filters
 One of the most important distinction of filters is whether a filter is an **Infinite Impulse Response (IIR)** or a **Finite Impulse Response (FIR)** filter ([their mathematical equation](https://community.sw.siemens.com/s/article/introduction-to-filters-fir-versus-iir) decides to which category a filter belongs, but we will elaborate on equations here). Conceptually, as the name suggests, these filters can be differentiated by their impulse response. An FIR filter has a finite effect on an impulse, meaning that the induced ringing will stop completely with time. The ringing induced by an IIR filter, on the other hand, is indefinite, meaning that the ringing will be reflected in the whole recording (while this is technically true, the ringing becomes unconsiderably small with time as well).
+
+![](images/filters/IIR_FIR_impulse_response.png)
+The ringing introduced by both the FIR and IIR filter is bigger, the larger the filter order. While the ringing of the FIR filter is strictly limited in time (determined by the filter order), the ringing of the IIR filter is comceptually indefinite (even though you see here that is also quickly approximates 0). For FIR filters, the filter affects the signal for exactly one sample point longer than their filter order, so in our example 21 and 61 sample points (which translates to 0.17 s and 0.49 s at a sampling rate of 125 Hz). After that, the impulse at sample point N=1 is not affected by the filter anymore.
+
 
 In practice, IIR filters have the advantage that they are considerably faster due to their low filter order (somewhere around 1 to 10). FIR filter need a higher filter order (somewhere around 100 to 1000) to achieve the same attenuation of frequencies as a respective IIR filter. However, an IIR has nonlinear phase and stability issues. It is a bit like the fable of the tortoise and the hare. The FIR filter is like the tortoise in the race – slow and steady, and always finishes. The hare is like the IIR filter – very fast, but sometimes crashes and does not complete the race. This is why, generally speaking, FIR filters are prefered whenever computation time allows to do so (such as offline analyses, so analyses on data that are already recorded). There are domains, however, such as real-time processing, where computation speed is ciritical, which is why you will usually find IIR filters there (the algorithm on our SleepLoop device is such an example, it uses IIR filters).
 
@@ -53,7 +52,23 @@ In practice, IIR filters have the advantage that they are considerably faster du
 | Phase delay         | Not constant <br>(across frequencies) | Constant<br>(across frequencies)  |
 | Stability           | Sometimes                             | Always                            |
 
-Example of IIR and FIR with different filter orders ...
+![](images/filters/IIR_FIR_magnitude_response.png)
+Both FIR and IIR filters attenuate unwanted frequencies better at a larger filter order. The larger filter order comes, as you have seen above, at a price of stronger smearing. Note that the filter order of IIR filters are always smaller then of FIR filters, which speeds them up considerably.
+
+
+## Phase shift
+Important in our line of research is at what phase of a slow wave an auditory stimulus was presented. Some filters introduce a phase shift which is different for each frequency in the signal. When analyzing data to which we introduced a phase shift by the type of filter we applied, we would assume a completely wrong phase precision of our stimulation algorithm. This is why *zero-phase filters* are especially important to us. FIR filter change the phase of the signal linearly (or evenly) for all frequencies, so that it can be easily corrected. In practice, you can either use the function `firfilt()` together with an FIR filter. It applies the filter once and corrects for the introduced **linear** phase shift. If you use an IIR filter, you should use the function `filtfilt()` to filter your data. This function applies the filter twice in both directions (also called *two-way filtering*) and by that reversing **any** introduced phase shift.
+
+![](images/filters/Phase_response.png)
+FIGURE CAPTION??? one radian is 180/π degrees (~ 57.3°). In figure xx you can additionally see that the linear phase shift of the FIR filter shifted the impulse response 0.325 s to the future. The shift can be easily inferred from the filter order of the filter, which the `firfilt()` function does in order to correct for this shift.
+
+
+Consequences of two-way filtering...
+
+## Some terminology
+An important goal of neuroscience is to determine causal relations, for example, between a stimulus and brain activity, or between one brain event and another. If a filter is *causal*, the filter output depends only on past and present samples of the input. If a filter is *acausal*, the filter output also depends on future samples of the input. 
+
+Roll-off... fall-off... cut-off ...
 
 ## Example on how to build a filter
 Within MATLAB alone there are numerous ways on how to build and run a filter. The easiest way is probably to use functions provided by external toolboxes, such as `eegfilt()` or `pop_eegfiltnew()` from the EEGLAB toolbox or `ft_preproc_lowpassfilter()` from the FIELDTRIP toolbox. You typically just give those functions the cut-off frequencies of your choice and they will design and apply the filter for you. When using functions from toolboxes, you can rely on the filterdesign of the people who designed those toolboxes. While this is great for the start, it is usually a blind approach as you do not need to investigate the impulse response function of the filter, meaning that you do not know how well it performance in the frequency vs. time domain.
