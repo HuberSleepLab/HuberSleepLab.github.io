@@ -8,6 +8,10 @@ One of the major challenges of brain science is that measurements are contaminat
 <figcaption>A filter for signal processing is not that different from a coffee filter: it removes the unwanted parts (coffee grounds or *artifacts*) and lets the wanted parts pass (water with coffee flavour or *brain signal*).</figcaption>
 
 
+## Another way to think about filters
+Every signal can be thought of as built up from a large number of sine and cosine waves with different frequencies. A filter now attenuates the signal for each of its frequencies differently. Ideally, the passband frequencies (the frequencies of interest) of the signal will be passed unchanged from input to output. The stopband frequencies (noise), however, should be attenuated at the output of the filter. 
+
+
 ## Filter applications
 For example, a direct current (DC) component or slow fluctuation may be removed with a **high-pass filter** (a high-pass filter leaves high frequencies in the signal, they "pass" the filter), unwanted high-frequency components may be removed by smoothing the data with a **low-pass filter** (low frequencies are left in the signal, they "pass" the filter), and power line components may be attenuated by a **notch filter** at 50 or 60 Hz (only a specified frequency range is filtered out). A filter that removes low and high frequencies at the same time is called a **band-pass filter** (a specified frequency band, such as 10-20 Hz "passes" the filter).
 
