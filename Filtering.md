@@ -69,7 +69,10 @@ While *filtfilt()* is a convenient option to circumvent the problem with non-lin
 ## Some terminology
 An important goal of neuroscience is to determine causal relations, for example, between a stimulus and brain activity, or between one brain event and another. If a filter is *causal*, the filter output depends only on past and present samples of the input. If a filter is *acausal*, the filter output also depends on future samples of the input. 
 
-Roll-off... fall-off... cut-off ... half-amplitude cut-off (IIR vs FIR)
+The cutoff frequency separates passband and stopband of the filter and always lies in the transition band. This is the value that is most likely to be reported when a filter is applied during the signal processing, but it is not sufficient to characterize the filter. Different definitions of cutoff frequency are used: −3 dB (half-energy) cutoff (common for IIR filters; see Section 2.7 below) and −6 dB (half amplitude) cutoff (common for FIR and two-pass IIR filters). Therefore, cutoff frequencies should always be 
+reported together with the definition used. Optimally, the cutoff frequency should separate signal from noise components in the frequency domain. To avoid unwanted signal distortions, it is essential to select the cutoff frequency so that no spectral component of the signal is attenuated but as much noise as possible is removed.
+![](images/filters/Roll_off.png) 
+
 
 ## Example on how to build a filter
 Within MATLAB alone there are numerous ways on how to build and run a filter. The easiest way is probably to use functions provided by external toolboxes, such as `eegfilt()` or `pop_eegfiltnew()` from the EEGLAB toolbox or `ft_preproc_lowpassfilter()` from the FIELDTRIP toolbox. You typically just give those functions the cut-off frequencies of your choice and they will design and apply the filter for you. When using functions from toolboxes, you can rely on the filterdesign of the people who designed those toolboxes. While this is great for the start, it is usually a blind approach as you do not need to investigate the impulse response function of the filter, meaning that you do not know how well it performance in the frequency vs. time domain.
