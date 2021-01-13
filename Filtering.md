@@ -4,7 +4,7 @@
 ## Filtering: Background
 One of the major challenges of brain science is that measurements are contaminated by *noise* and *artifacts*. These may include environmental noise (e.g. electrical line noise), instrumental noise, or physiological noise (e.g. signal sources within the body that are not of interest, such as heart beat). **Filters** are commonly used to reduce noise and improve data quality. This is possible in case the noise occupies a spectral region other than your signal of interest (e.g. line noise at 50 Hz and slow delta oscillations during sleep at around 1 Hz). In this case the filter can attenuate the noise in the data and leaves the signal of interest (i.e. brain signal) "untouched". In practise, as everything in life, this dichotomy is not perfect, meaning that the signal of interest is also affected by the filter, but (usually or hopefully) to a minimal extend.
 
-![](images/filters/DC_line_noise_clean.png)
+![](images/filters/coffee.png)
 <figcaption>A filter for signal processing is not that different from a coffee filter: it removes the unwanted parts (coffee grounds or *artifacts*) and lets the wanted parts pass (water with coffee flavour or *brain signal*).</figcaption>
 
 
