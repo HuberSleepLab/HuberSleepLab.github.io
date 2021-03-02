@@ -130,19 +130,25 @@ electrode.
 ## Artifact removal
 
 ### Our lab's approach
-As sleep EEG consists hours and hours of data, cleaning sleep EEGs can usually be accomplished by simply removing the parts of the data which contain artifacts. In our lab, this is done in two steps:
+As sleep EEG consists of hours and hours of data, cleaning sleep EEGs can usually be accomplished by simply removing the parts of the data which contain artifacts. In our lab, this is done in two steps:
 
-1.  During sleep scoring, 4s epochs are visually classified as clean or noisy. As we perform sleep scoring in 20s epochs, any 4s epoch within a 20s epoch will result in the particular 20s epoch to be classified as noisy as well. During sleep scoring, we see the data of one frontal, one central and one occipital channel. Even though manual artifact removal can be considered as one of the most thorough procedures, going through all 128 HD-EEG channels manually would require a tremendous amount of work.
+![](images/artifacts/scoring_program_edit.png)
+1.  During sleep scoring, noisy segments of data are manually classified. One time window (epoch) that we use for sleep scoring is usually 20s long. Each of those 20s windows can be divided into smaller 4s windows. During sleep scoring, 4s epochs are visually classified as clean or noisy. As we perform sleep scoring in 20s epochs, any 4s epoch within a 20s epoch will result in the particular 20s epoch to be classified as noise as well. During sleep scoring, we see the data of one frontal, one central and one occipital channel. Even though manual artifact removal can be considered as one of the most thorough procedures, going through all 128 HD-EEG channels manually would require a tremendous amount of work.
 
-Show tick boxes of sleep scoring programm
+![](images/artifacts/artndxn_figure01.png)
+2.  This is why in a second step, we perform a semi-automatic artifact removal procedure on all 128 HD-EEG channels. For this, the power in the slow-wave (0.75 – 4.5 Hz) and muscle (20 – 40 Hz) frequency band is computed for all remaining 20s epochs and all channels. Remaining 20s epochs are those that were not marked as noisy during sleep scoring and additionally staged as N1, N2 or N3. The power is computed with an FFT routine (Hanning window, averages of five 4 s epochs). The power values of all epochs are visualized for each channel consecutively. Whenever the power in either the slow-wave or muscle frequency band peaks out from their neighbours, it is likely that this epoch contains an artifact and is removed.
 
-2.  This is why in a second step, we perform a semi-automatic artifact removal procedure on all 128 HD-EEG channels. For this, the power in the slow-wave (0.75 – 4.5 Hz) and muscle (20 – 40 Hz) frequency band is computed for all remaining 20s epochs and all channels. Remaining 20s epochs are those that were not marked as noisy during sleep scoring. The power is computed with an FFT routine (Hanning window, averages of five 4 s epochs). The power values of all epochs are visualized for each channel consecutively. Whenever the power in either the slow-wave or muscle frequency band peaks out from their neighbours, it is likely that this epoch contains an artifact and is removed.
-![](images/artifacts/artndxn_delta_text.png)
+![](images/artifacts/artndxn_figure02.png)
+3.  The average power in all frequencies helps you to decide whether this channel still contains noisy epochs or not. Usually, when removing epochs with body movement artifacts, the dotted blue line should be lower in the respective frequencies that a body movement carries (e. g. delta and beta frequency).
 
-3.  Eventually you will build a matrix (channel x epochs) of zeros and ones. Clean epochs are labelled as ones, whereas noisy epochs are reffered to with zeros. We usually perform our analyses only on those parts of the data, in which *all* channels are clean, meaning in which all channels have the number one.
+![](images/artifacts/artndxn_figure03.png)
+4.  You can control the artifact removal procedure with this GUI. The `upper limit` field simply applies a threshold. When epochs have a higher spectral power value than your upper limit, they will be removed. The `Factor` field determines how much a peak in spectral power needs to stand out in order to be considered as an outlier. The lower the value, the easier it is for any epoch to stand out from it's neighbours and to be removed.
 
-Show final matrix ...
-Show visualization of artndx.mat ...
+![](images/artifacts/artndxn_matrix.png)
+5.  Eventually you will build a matrix (channel x epochs) of zeros and ones. Clean epochs are labelled as ones, whereas noisy epochs are reffered to with zeros. We usually perform our analyses only on those parts of the data, in which *all* channels are clean, meaning in which all channels have the number one.
+
+![](images/artifacts/artndxn_visualization.png)
+6.  When you have completed the artifactor rejection for all 128 channels, you can visualize your work. In this plot, all black columns represent either a noisy epoch or an epoch outside of N1, N2 and N3. Like this further analyses only consider clean epochs during NREM sleep. White columns represent those. Underneath you can see the corresponding sleep scoring, you can nicely see how bouts of REM sleep correspond to black bouts in all channels. In blue you can see the percentage of clean NREM epochs among all NREM epochs. We usually set a threshold (e.g. 97%) above which a channel needs to stay. Channels with e.g. less than 97% of clean NREM epochs are then considered as "bad" and will be interpolated in a next step.
 
 ### Other approaches
 
