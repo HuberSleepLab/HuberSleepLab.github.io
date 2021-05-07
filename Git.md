@@ -12,7 +12,7 @@ If you can't do something fancy in Markdown, you can just write in HTML: <a href
 But! What if someone here already presents it? Well I can just link it like [so](https://hubersleeplab.github.io/README2.html).
 In case you didn't notice, there's a cute little menu on the left, but it will only write up to three `###` pound signs.
 
-#### Subpoint to the intro
+#### Sub point to the intro
 - Bulleted
 - List
 
@@ -35,7 +35,7 @@ Now just replace the numbers in `Var1` and you can do math!
 If you're really fancy, you can add a table:
 
 Row Names | Data
-----------|----- 
+----------|-----
 First row | Lots of data
 Second row | More data
 
