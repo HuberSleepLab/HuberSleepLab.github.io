@@ -1,5 +1,5 @@
 # MATLAB
-> By Sophia Snipes (*Last updated: October 2020*)
+> By Sophia Snipes (*Last updated: May 2021*)
 
 [MATLAB](https://mathworks.com/products/matlab.html) is the programming language used in this tutorial. You really should know it before getting to this point, but in case it helps, here are a few introductory concepts. The pipeline we use could theoretically be applied to any other programming language, but MATLAB is particularly appropriate because of the heavy use of matrices.
 
@@ -193,13 +193,30 @@ B = A(2, 40:45);
 
 Indx = 1:5;
 
+```
+
+With matrices, you can index specific coordinates by providing a value for each dimention of the matrix like so: `A(3, 5)`, or a list, so long as the number of elements are the same for each dimention `A(1:5, 11:15)`. The first list indicates the rows, the second list indicates the columns.
+
+```m
 B2 = A(1, Indx);
 
 A(2, Indx) = 10:15; % you can index an already existing variable to assign new content to those locations
 ```
 
-> you can also just write `A(end)` to get the last element in an array, or even `A(end-5:end)` to get the last 5.
+> You can also just write `A(end)` to get the last element in an array, or even `A(end-5:end)` to get the last 5.
 
+
+Lastly, often you want all the values in one of the two dimentions, like if you want to replace a row of a matrix. You do so by leaving this placeholder: `:`
+
+```m
+
+A = [1 2 3; 4 5 6];
+
+A(:, 1) = [0 0]; % replaces the first column with 0s
+
+A(2, :) = A(2, :)*10; % replaces the last row with the previous row multiplied by 10.
+
+```
 
 <p>&nbsp;</p>
 
@@ -210,6 +227,15 @@ Indexing is best done with booleans, by having an array of booleans the same siz
 A = [1, 2, -1; -5, 3, 6; -2, -3, 2];
 Indx = A < 0;
 A(Indx) = 0; % assign 0 to all negative numbers in A
+```
+
+This is the computationally fastest thing you can do, and while it ties your head into knots, it can save a lot of computation time. Furthermore, you're more likely to get error messages, which may seem bad, but it means its a lot harder to make mistakes that you don't catch. Basically, the dimentions need to match, so if you call the wrong variable, the dimentions won't match, and you'll know that you coded a mistake. This is especially true when you use indexing for assining values, like so:
+
+```m
+A = zeros(5, 10); % creates a matrix of zeros
+B = 1:10;
+A(1, B>5) = B; % fills in A all numbers in B larger than 5.
+
 ```
 
 
