@@ -129,6 +129,9 @@ electrode.
 
 ## Artifact removal
 
+<video src="videos/artifact_rejection_zoom.mp4" width="320" height="200" controls preload></video>
+
+
 ### Our lab's approach
 As sleep EEG consists of hours and hours of data, cleaning sleep EEGs can usually be accomplished by simply removing the parts of the data which contain artifacts. In our lab, this is done in two steps:
 
